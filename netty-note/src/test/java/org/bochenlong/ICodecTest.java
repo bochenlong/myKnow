@@ -1,18 +1,17 @@
-package org.bochenlong.netty.serialize;
+package org.bochenlong;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import org.bochenlong.netty.codec.ProtostuffCodec;
 
 import java.io.Serializable;
-import java.nio.Buffer;
-import java.nio.channels.InterruptedByTimeoutException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by bcl on 2016/8/30.
  */
-public class SerializeTest {
+public class ICodecTest {
     public static void main(String[] args) throws Exception {
         UserInfo u = new UserInfo().setEmail("317144004@qq.com").setName("bochenlong").setPassword("222222")
                 .setPhone("18518757071");
@@ -29,7 +28,7 @@ public class SerializeTest {
         }
 
         System.out.println(byteBuf.readableBytes());
-        System.out.println(new ProtostuffSerialize<UserInfo>().toBytes(u).length);
+        System.out.println(new ProtostuffCodec<UserInfo>().toBytes(u).length);
     }
 
     public static class UserInfo implements Serializable {

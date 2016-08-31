@@ -1,16 +1,17 @@
-package org.bochenlong.netty.serialize;
+package org.bochenlong.netty.codec;
 
 import io.protostuff.LinkedBuffer;
 import io.protostuff.ProtostuffIOUtil;
 import io.protostuff.Schema;
 import io.protostuff.runtime.RuntimeSchema;
+import org.omg.IOP.Codec;
 
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by bcl on 2016/8/30.
  */
-public class ProtostuffSerialize<T> {
+public class ProtostuffCodec<T> implements ICodec {
     private static ConcurrentHashMap<Class<?>, Schema<?>> cschema
             = new ConcurrentHashMap();
 

@@ -1,11 +1,11 @@
-package org.bochenlong.netty.serialize;
+package org.bochenlong.netty.codec;
 
 import java.io.*;
 
 /**
  * Created by bcl on 2016/8/30.
  */
-public class JavaSerialize<T>{
+public class JavaCodec<T> implements ICodec {
     public byte[] toBytes(T t) {
         try {
             try (
@@ -23,10 +23,10 @@ public class JavaSerialize<T>{
     }
 
     public T toObject(byte[] bytes) {
-        try(
+        try (
                 ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
                 ObjectInputStream ois = new ObjectInputStream(bis)
-                ) {
+        ) {
             return (T) ois.readObject();
         } catch (IOException e) {
             e.printStackTrace();

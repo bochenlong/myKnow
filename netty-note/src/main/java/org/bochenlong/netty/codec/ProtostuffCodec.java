@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by bcl on 2016/8/30.
  */
-public class ProtostuffCodec<T> implements ICodec {
+public class ProtostuffCodec<T> {
     private static ConcurrentHashMap<Class<?>, Schema<?>> cschema
             = new ConcurrentHashMap();
 
@@ -22,7 +22,6 @@ public class ProtostuffCodec<T> implements ICodec {
         cschema.put(c, schema);
         return ProtostuffIOUtil.toByteArray(t, schema, buffer);
     }
-
 
     public T toObject(byte[] bytes, Class<T> c) {
         try {

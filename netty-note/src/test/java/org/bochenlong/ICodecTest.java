@@ -2,6 +2,7 @@ package org.bochenlong;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import org.bochenlong.netty.codec.ICodec;
 import org.bochenlong.netty.codec.ProtostuffCodec;
 
 import java.io.Serializable;
@@ -29,6 +30,7 @@ public class ICodecTest {
 
         System.out.println(byteBuf.readableBytes());
         System.out.println(new ProtostuffCodec<UserInfo>().toBytes(u).length);
+
     }
 
     public static class UserInfo implements Serializable {

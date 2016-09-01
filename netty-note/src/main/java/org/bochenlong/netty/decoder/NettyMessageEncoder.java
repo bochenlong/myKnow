@@ -5,6 +5,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
 import org.bochenlong.netty.NettyMessage;
+import org.bochenlong.netty.codec.ICodec;
 
 import java.util.List;
 import java.util.Map;

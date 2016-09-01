@@ -1,0 +1,2 @@
+Spliterator代表“可分迭代器”。和Iterator一样，Spliterator
+也用于遍历数据源中的元素，但它为了并行执行而设计。

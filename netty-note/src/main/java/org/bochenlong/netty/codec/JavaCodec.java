@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * Created by bcl on 2016/8/30.
  */
-public class JavaCodec<T> implements ICodec {
+public class JavaCodec<T> {
     public byte[] toBytes(T t) {
         try {
             try (
@@ -35,4 +35,5 @@ public class JavaCodec<T> implements ICodec {
         }
         return null;
     }
+
 }

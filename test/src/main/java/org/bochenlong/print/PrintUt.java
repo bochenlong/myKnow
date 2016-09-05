@@ -6,9 +6,8 @@ package org.bochenlong.print;
 public class PrintUt {
     public static void print(Object... args) {
         StringBuffer sb = new StringBuffer();
-        for (Object o:args) {
-            sb.append(o.toString());
-            sb.append("-");
+        for (Object o : args) {
+            sb.append(o);
         }
         System.out.println(sb.toString());
     }

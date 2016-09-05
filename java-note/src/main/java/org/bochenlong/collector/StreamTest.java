@@ -1,4 +1,4 @@
-package org.bochenlong;
+package org.bochenlong.collector;
 
 import org.bochenlong.collector.Container;
 import org.bochenlong.collector.Dish;

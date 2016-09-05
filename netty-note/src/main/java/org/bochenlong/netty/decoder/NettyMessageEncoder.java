@@ -39,6 +39,5 @@ public class NettyMessageEncoder extends MessageToMessageEncoder<NettyMessage> {
             sendBuf.writeBytes(bytes);
             value = entrys.getValue();
         }
-
     }
 }

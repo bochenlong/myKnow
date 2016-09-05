@@ -20,7 +20,6 @@
             <groupId>org.bochenlong</groupId>
             <artifactId>test</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

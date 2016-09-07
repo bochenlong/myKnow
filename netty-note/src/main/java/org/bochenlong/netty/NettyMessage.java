@@ -11,7 +11,13 @@ public final class NettyMessage {
     public String toString() {
         return "NettyMessage{" +
                 "header=" + header +
+                ", body=" + body +
                 '}';
+    }
+
+    public NettyMessage(Header header, Invocation body) {
+        this.header = header;
+        this.body = body;
     }
 
     public final Header getHeader() {
@@ -29,4 +35,5 @@ public final class NettyMessage {
     public final void setBody(Invocation body) {
         this.body = body;
     }
+
 }

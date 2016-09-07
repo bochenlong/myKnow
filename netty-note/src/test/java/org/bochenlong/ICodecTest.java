@@ -6,6 +6,7 @@ import org.bochenlong.netty.codec.ICodec;
 import org.bochenlong.netty.codec.ProtostuffCodec;
 
 import java.io.Serializable;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +32,25 @@ public class ICodecTest {
         System.out.println(byteBuf.readableBytes());
         System.out.println(new ProtostuffCodec<UserInfo>().toBytes(u).length);
 
+        byteBuf = Unpooled.buffer();
+        String a = "avccd";
+        String b = "ssed";
+        byte[] bytes = a.getBytes();
+        byteBuf.writeInt(bytes.length);
+        byteBuf.writeBytes(bytes);
+        bytes = b.getBytes();
+        byteBuf.writeInt(bytes.length);
+        byteBuf.writeBytes(bytes);
+
+        int al = byteBuf.readInt();
+        byte[] bytes1 = new byte[al];
+        byteBuf.readBytes(bytes1);
+        System.out.println(al + new String(bytes1));
+        int bl = byteBuf.readInt();
+        bytes1 = new byte[bl];
+        byteBuf.readBytes(bytes1);
+        System.out.println(bl + new String(bytes1));
+        System.out.println(Charset.defaultCharset().name());
     }
 
     public static class UserInfo implements Serializable {

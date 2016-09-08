@@ -45,12 +45,10 @@ public class NettyMessageEncoder extends MessageToMessageEncoder<NettyMessage> {
 
         // 处理body部分
         Invocation invocation = nettyMessage.getBody();
-        ByteBufUt.writeBytes(sendBuf, invocation.getClassName().getBytes("UTF-8"));
-        ByteBufUt.writeBytes(sendBuf, invocation.getMethodName().getBytes("UTF-8"));
-        ByteBufUt.writeBytes(sendBuf, protostuffCodec.toBytes(invocation.getParameterTypes()));
-        ByteBufUt.writeBytes(sendBuf, protostuffCodec.toBytes(invocation.getArgs()));
+        ByteBufUt.writeBytes(sendBuf, protostuffCodec.toBytes(invocation));
 
         sendBuf.setInt(4, sendBuf.readableBytes());// 消息长度设置为实际的长度
 
+        list.add(sendBuf);
     }
 }

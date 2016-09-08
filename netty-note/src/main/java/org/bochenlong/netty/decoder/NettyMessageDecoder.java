@@ -47,14 +47,7 @@ public class NettyMessageDecoder extends LengthFieldBasedFrameDecoder {
             }
         }
 
-        Invocation invocation = null;
-        if (header.getLength() > 0) {
-            invocation = new Invocation();
-            invocation.setClassName(new String(ByteBufUt.readBytes(in, in.readInt()), "UTF-8"));
-            invocation.setMethodName(new String(ByteBufUt.readBytes(in, in.readInt()), "UTF-8"));
-            invocation.setParameterTypes((Class<?>[]) protostuffCodec.toObject(ByteBufUt.readBytes(in, in.readInt()), Class[].class));
-            invocation.setArgs((Object[]) protostuffCodec.toObject(ByteBufUt.readBytes(in, in.readInt()), Object[].class));
-        }
+        Invocation invocation = (Invocation) protostuffCodec.toObject(ByteBufUt.readBytes(in, in.readInt()),Invocation.class);
         return new NettyMessage(header, invocation);
     }
 }

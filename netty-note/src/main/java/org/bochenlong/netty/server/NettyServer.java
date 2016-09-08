@@ -1,7 +1,6 @@
 package org.bochenlong.netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.buffer.ByteBufUtil;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
@@ -13,7 +12,6 @@ import io.netty.handler.logging.LoggingHandler;
 import org.bochenlong.netty.decoder.NettyMessageDecoder;
 import org.bochenlong.netty.decoder.NettyMessageEncoder;
 import org.bochenlong.netty.server.handler.ServerHandler;
-import org.bochenlong.netty.ut.ByteBufUt;
 
 /**
  * Created by bcl on 2016/8/29.
@@ -33,13 +31,13 @@ public class NettyServer {
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel sc) throws Exception {
-                        sc.pipeline().addLast(new NettyMessageDecoder(1024 * 1024, 4, 4));
+                        sc.pipeline().addLast(new NettyMessageDecoder(1024*1024, 4, 4));
                         sc.pipeline().addLast(new NettyMessageEncoder());
                         sc.pipeline().addLast(new ServerHandler());
                     }
                 });
 
-        b.bind(port).sync();
+        b.bind("localhost",port).sync();
         System.out.println("server has run");
     }
 

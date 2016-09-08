@@ -27,7 +27,7 @@ public class NettyClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel sc) throws Exception {
-                            sc.pipeline().addLast(new NettyMessageDecoder(1024 * 1024, 4, 4));
+                            sc.pipeline().addLast(new NettyMessageDecoder(1024*1024, 4, 4));
                             sc.pipeline().addLast(new NettyMessageEncoder());
                             sc.pipeline().addLast(new ClientHandler());
                         }

@@ -66,6 +66,7 @@ public class MiniDaoTest {
                 myTables.add((MyTable) lazyBeanList.getNext());
             }
             myTables.stream().forEach(System.out::println);
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

@@ -1,29 +1,26 @@
 import org.bochenlong.print.PrintUt;
-import org.bochenlong.time8.TimeUt;
 
-import java.util.concurrent.ExecutorService;
+import java.math.BigInteger;
+import java.time.LocalTime;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by bochenlong on 16-9-13.
  */
 public class Test {
     public static void main(String[] args) {
-        Runnable r = () -> System.out.println("I am full");
-        long t = TimeUt.currT();
-        for (int i = 0; i < 100; i++) {
-            System.out.println("t" + i);
-            new Thread(r).start();
-        }
-        TimeUt.useTP(t);
-        t = TimeUt.currT();
-        for (int i = 0; i < 100; i++) {
-            System.out.println("s" + i);
-            ExecutorService service = Executors.newSingleThreadExecutor();
-            service.execute(r);
-            service.shutdown();
-        }
-        TimeUt.useTP(t);
+        // 开启单线程定时处理任务
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        // 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
+        service.scheduleAtFixedRate(() -> {
+            try {
+                System.out.println(LocalTime.now());
+                Thread.sleep(10000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, 1L, 1L, TimeUnit.SECONDS);
     }
-
 }

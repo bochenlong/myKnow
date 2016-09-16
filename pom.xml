@@ -20,6 +20,7 @@
         <module>netty-note</module>
         <module>java-note</module>
         <module>test</module>
+        <module>derby-note</module>
     </modules>
 
     <!-- Add typical dependencies for a web application -->

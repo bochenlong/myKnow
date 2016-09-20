@@ -21,6 +21,7 @@
         <module>java-note</module>
         <module>test</module>
         <module>derby-note</module>
+        <module>test-note</module>
     </modules>
 
     <!-- Add typical dependencies for a web application -->

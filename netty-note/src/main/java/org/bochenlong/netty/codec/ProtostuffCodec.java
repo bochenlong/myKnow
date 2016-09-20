@@ -18,9 +18,12 @@ public class ProtostuffCodec<T> {
     public byte[] toBytes(T t) {
         LinkedBuffer buffer = LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE);
         Class<T> c = (Class<T>) t.getClass();
-        Schema<T> schema = RuntimeSchema.createFrom(c);
-        cschema.put(c, schema);
-        return ProtostuffIOUtil.toByteArray(t, schema, buffer);
+        Schema<T> schema;
+        if (cschema.get(c) == null) {
+            schema = RuntimeSchema.createFrom(c);
+            cschema.put(c,schema);
+        }
+        return ProtostuffIOUtil.toByteArray(t, (Schema<T>) cschema.get(c), buffer);
     }
 
     public T toObject(byte[] bytes, Class<T> c) {

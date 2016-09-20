@@ -17,15 +17,15 @@ public class CodecTest2 {
         long t = TimeUt.currT();
 
         byte[] bytes = DemoProtoBean2.Demo2.newBuilder()
-                .setId(1).setName("bochenlong").setAddress("zhongguancun")
-                .setMail("bochenlong@163.com").build().toByteArray();
+                .setId(1).setName("chenxiaochun").setAddress("zhongguancun")
+                .setMail("chenxiaochun@163.com").build().toByteArray();
         for (int i = 0; i < 10000000; i++) {
             DemoProtoBean2.Demo2 demo = DemoProtoBean2.Demo2.parseFrom(bytes);
         }
         TimeUt.useTP(t);
 
         long t1 = TimeUt.currT();
-        Demo2 d = new Demo2(1, "bochenlong", "bochenlong@163.com", "zhongguancun");
+        Demo2 d = new Demo2(1, "chenxiaochun", "chenxiaochun@163.com", "zhongguancun");
         Schema<Demo2> schema = RuntimeSchema.createFrom(Demo2.class);
         byte[] bytes2 = ProtostuffIOUtil.toByteArray(d, schema, LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE));
         Demo2 d1 = new Demo2();

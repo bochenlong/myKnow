@@ -1,4 +1,4 @@
-package org.bochenlong.netty.codec;
+package org.bochenlong.codec;
 
 import java.io.*;
 

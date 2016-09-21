@@ -1,9 +1,6 @@
 package org.bochenlong.netty.client.handler;
 
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.*;
 import org.bochenlong.netty.Header;
 import org.bochenlong.netty.Invocation;
 import org.bochenlong.netty.NettyMessage;
@@ -12,7 +9,7 @@ import org.bochenlong.netty.codec.ProtostuffCodec;
 /**
  * Created by bcl on 2016/9/7.
  */
-public class ClientHandler extends ChannelInboundHandlerAdapter {
+public class ClientHandler extends ChannelHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {

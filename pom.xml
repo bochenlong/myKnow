@@ -22,6 +22,7 @@
         <module>test</module>
         <module>derby-note</module>
         <module>test-note</module>
+        <module>vert.x-note</module>
     </modules>
 
     <!-- Add typical dependencies for a web application -->

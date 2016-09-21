@@ -15,6 +15,9 @@ public final class NettyMessage {
                 '}';
     }
 
+    public NettyMessage() {
+    }
+
     public NettyMessage(Header header, Invocation body) {
         this.header = header;
         this.body = body;

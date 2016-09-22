@@ -21,9 +21,6 @@ public class Application extends AbstractVerticle {
                 .setWorkerPoolSize(1000)
         );
 
-        vertx.deployVerticle(Application.class.getName(),
-                new DeploymentOptions().setInstances(Runtime.getRuntime().availableProcessors()));
-
         // 初始化服务器
         HttpServer server = vertx.createHttpServer();
 

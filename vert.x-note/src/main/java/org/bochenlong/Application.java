@@ -21,6 +21,9 @@ public class Application extends AbstractVerticle {
                 .setWorkerPoolSize(1000)
         );
 
+        vertx.deployVerticle(Application.class.getName(),
+                new DeploymentOptions().setInstances(Runtime.getRuntime().availableProcessors()));
+
         // 初始化服务器
         HttpServer server = vertx.createHttpServer();
 
@@ -37,9 +40,9 @@ public class Application extends AbstractVerticle {
         RouterRegister.register(router);
 
         // 开启服务器
-        server.requestHandler(router::accept).listen(8989, "localhost");
+        server.requestHandler(router::accept).listen(8080, "localhost");
 
-        System.out.println("server start at localhost:8989");
+        System.out.println("server start at localhost:8080");
     }
 
 }

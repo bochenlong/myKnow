@@ -11,16 +11,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class Test {
     public static void main(String[] args) {
-        // 开启单线程定时处理任务
-        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-        // 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
-        service.scheduleAtFixedRate(() -> {
-            try {
-                System.out.println(LocalTime.now());
-                Thread.sleep(10000L);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }, 1L, 1L, TimeUnit.SECONDS);
+        try {
+            String string = null;
+            System.out.println(string.length());
+        } finally {
+            System.out.println("hello world");
+        }
     }
 }

@@ -1,4 +1,4 @@
-package org.bochenlong;
+package org.bochenlong.vert;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
@@ -7,7 +7,7 @@ import io.vertx.core.VertxOptions;
 import io.vertx.core.http.HttpServer;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.StaticHandler;
-import org.bochenlong.hander.RouterRegister;
+import org.bochenlong.vert.hander.RouterRegister;
 
 /**
  * Created by bochenlong on 16-9-21.

@@ -5,7 +5,6 @@ import org.midao.jdbc.core.MjdbcFactory;
 import org.midao.jdbc.core.handlers.input.named.MapInputHandler;
 import org.midao.jdbc.core.service.QueryRunnerService;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -28,14 +27,15 @@ public class UserDao {
 
     public void save(String name, String password) {
         Map<String, Object> map = new HashMap<>();
-        map.put("id", UUID.randomUUID().toString().replace("-", ""));
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        map.put("id", uuid);
         map.put("name", name);
         map.put("password", password);
         map.put("createTime", new Timestamp(System.currentTimeMillis()));
         StringJoiner stringJoiner = new StringJoiner(",", "(", ")");
         stringJoiner.add(":id").add(":name").add(":password")
                 .add(":createTime");
-        MapInputHandler input = new MapInputHandler("insert into user_ values " + stringJoiner, map);
+        MapInputHandler input = new MapInputHandler("insert into user_" + partition(uuid) + " values " + stringJoiner, map);
 
         try {
             runner.update(input);
@@ -45,6 +45,10 @@ public class UserDao {
         } finally {
 
         }
+    }
+
+    public String partition(String uuid) {
+        return uuid.hashCode() % 2 == 0 ? "01" : "02";
     }
 
     public void close() {

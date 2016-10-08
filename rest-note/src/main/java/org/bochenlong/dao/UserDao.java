@@ -47,10 +47,6 @@ public class UserDao {
         }
     }
 
-    public String partition(String uuid) {
-        return uuid.hashCode() % 2 == 0 ? "01" : "02";
-    }
-
     public void close() {
         try {
             if (conn != null) {

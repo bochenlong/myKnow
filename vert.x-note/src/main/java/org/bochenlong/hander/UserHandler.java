@@ -21,5 +21,6 @@ public class UserHandler implements Handler<RoutingContext> {
     private void save(String name, String password) {
         UserDao userDao = new UserDao();
         userDao.save(name, password);
+        userDao.close();
     }
 }

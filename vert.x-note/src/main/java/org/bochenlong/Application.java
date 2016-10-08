@@ -5,7 +5,6 @@ import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.http.HttpServer;
-import io.vertx.core.impl.launcher.commands.RunCommand;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.StaticHandler;
 import org.bochenlong.hander.RouterRegister;
@@ -14,16 +13,12 @@ import org.bochenlong.hander.RouterRegister;
  * Created by bochenlong on 16-9-21.
  */
 public class Application extends AbstractVerticle {
+    private static int PROCESSOR_NUM = Runtime.getRuntime().availableProcessors();
+    private static String SERVER_HOST = "localhost";
+    private static int SERVER_PORT = 8080;
 
-    public static void main(String[] args) {
-        // vert.x 配置
-        Vertx vertx = Vertx.vertx(new VertxOptions()
-                .setWorkerPoolSize(1000)
-        );
-
-        vertx.deployVerticle(Application.class.getName(),
-                new DeploymentOptions().setInstances(Runtime.getRuntime().availableProcessors()));
-
+    @Override
+    public void start() throws Exception {
         // 初始化服务器
         HttpServer server = vertx.createHttpServer();
 
@@ -40,9 +35,23 @@ public class Application extends AbstractVerticle {
         RouterRegister.register(router);
 
         // 开启服务器
-        server.requestHandler(router::accept).listen(8080, "localhost");
+        server.requestHandler(router::accept).listen(SERVER_PORT, SERVER_HOST);
 
-        System.out.println("server start at localhost:8080");
+        System.out.println(this.deploymentID() + " is deployed");
+
     }
 
+    public static void main(String[] args) {
+        System.out.println("server is ready to start");
+
+        Vertx vertx = Vertx.vertx(new VertxOptions().setBlockedThreadCheckInterval(300000L));
+        vertx.deployVerticle(Application.class.getName(),
+                new DeploymentOptions().setInstances(2 * PROCESSOR_NUM), e -> {
+                    if (e.succeeded()) {
+                        System.out.println("all verticle is deployed");
+                    } else {
+                        e.cause().printStackTrace();
+                    }
+                });
+    }
 }

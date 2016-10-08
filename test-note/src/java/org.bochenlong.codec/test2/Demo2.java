@@ -1,7 +1,8 @@
-package org.bochenlong.codec;
+package org.bochenlong.codec.test2;
 
 /**
  * Created by bochenlong on 16-9-20.
+ * 基本类型的数据类型Java Bean
  */
 public class Demo2 {
     private int id;

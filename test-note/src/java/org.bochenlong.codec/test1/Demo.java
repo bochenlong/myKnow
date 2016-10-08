@@ -1,10 +1,11 @@
-package org.bochenlong.codec;
+package org.bochenlong.codec.test1;
 
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by bochenlong on 16-9-20.
+ * 含复杂数据类型比如List Map的Java Bean
  */
 public class Demo {
     private int id;

@@ -10,9 +10,13 @@ public class RouterRegister {
     public static void register(Router router) {
         router.route().handler(BodyHandler.create());
 
-        router.get("/user")
+        router.get("/")
                 .produces("text/plain")
-                .handler(context -> context.response().end("hell world"));
+                .handler(context -> context.response().end("hello world"));
 
+
+        router.post("/user")
+                .produces("text/plain")
+                .handler(new UserHandler());
     }
 }

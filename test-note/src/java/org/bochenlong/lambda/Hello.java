@@ -1,4 +1,4 @@
-package org.bochenlong.lamda;
+package org.bochenlong.lambda;
 
 /**
  * Created by bochenlong on 16-9-21.

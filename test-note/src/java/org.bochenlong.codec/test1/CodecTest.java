@@ -1,4 +1,4 @@
-package org.bochenlong.codec;
+package org.bochenlong.codec.test1;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import io.protostuff.LinkedBuffer;

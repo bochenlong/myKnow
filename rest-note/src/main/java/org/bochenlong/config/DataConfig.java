@@ -14,10 +14,14 @@ public class DataConfig {
 
     private static DataSource init() {
         HikariDataSource ds = new HikariDataSource();
-        ds.setDriverClassName("org.apache.derby.jdbc.EmbeddedDriver");
-        ds.setJdbcUrl("jdbc:derby:/home/bochenlong/derbys/mydb");
-        ds.setUsername("");
-        ds.setPassword("");
+//        ds.setDriverClassName("org.apache.derby.jdbc.EmbeddedDriver");
+//        ds.setJdbcUrl("jdbc:derby:/home/bochenlong/derbys/mydb");        ds.setDriverClassName("org.apache.derby.jdbc.EmbeddedDriver");
+//        ds.setUsername("");
+//        ds.setPassword("");
+        ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        ds.setJdbcUrl("jdbc:mysql://localhost:3306/mydb?useUnicode=true&characterEncoding=UTF8&serverTimezone=UTC&useSSL=false");
+        ds.setUsername("root");
+        ds.setPassword("root");
         ds.setConnectionTimeout(100000);// 连接获取超时时间
         ds.setIdleTimeout(600000);// idea连接超时时间
         // ds.setMaxLifetime();// sql wait_timeout 数据库连接最长时间没有connection则关闭

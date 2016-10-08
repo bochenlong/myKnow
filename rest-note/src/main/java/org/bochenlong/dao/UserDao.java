@@ -35,7 +35,7 @@ public class UserDao {
         StringJoiner stringJoiner = new StringJoiner(",", "(", ")");
         stringJoiner.add(":id").add(":name").add(":password")
                 .add(":createTime");
-        MapInputHandler input = new MapInputHandler("insert into user_" + partition(uuid) + " values " + stringJoiner, map);
+        MapInputHandler input = new MapInputHandler("insert into user_" + " values " + stringJoiner, map);
 
         try {
             runner.update(input);

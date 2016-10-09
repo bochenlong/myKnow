@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.LongAdder;
+import java.util.stream.Collectors;
 
 /**
  * Created by bochenlong on 16-10-8.
@@ -48,4 +49,5 @@ public class PExec {
         System.out.println("平均每条数据处理：" + (float) t1 / ac);
         executorService.shutdown();
     }
+
 }

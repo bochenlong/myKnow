@@ -1,5 +1,7 @@
 package org.bochenlong.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.bochenlong.config.DataConfig;
 import org.midao.jdbc.core.MjdbcFactory;
 import org.midao.jdbc.core.handlers.input.named.MapInputHandler;
@@ -17,6 +19,8 @@ import java.util.UUID;
  * Created by bochenlong on 16-9-22.
  */
 public class UserDao {
+    private Logger logger = LogManager.getLogger(UserDao.class);
+
     private QueryRunnerService runner;
     private Connection conn;
 
@@ -35,7 +39,10 @@ public class UserDao {
         StringJoiner stringJoiner = new StringJoiner(",", "(", ")");
         stringJoiner.add(":id").add(":name").add(":password")
                 .add(":createTime");
+
         MapInputHandler input = new MapInputHandler("insert into user_" + " values " + stringJoiner, map);
+        logger.debug("the sql is {}", input.getQueryString());
+        logger.debug("params is {}", input.getQueryParameters().toMap());
 
         try {
             runner.update(input);
@@ -43,7 +50,7 @@ public class UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-
+            close();
         }
     }
 

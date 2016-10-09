@@ -1,5 +1,6 @@
 package org.bochenlong.config;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.zaxxer.hikari.HikariDataSource;
 
 import javax.sql.DataSource;
@@ -27,6 +28,24 @@ public class DataConfig {
         // ds.setMaxLifetime();// sql wait_timeout 数据库连接最长时间没有connection则关闭
         ds.setMaximumPoolSize(10000);
         ds.setMinimumIdle(5000);
+        return ds;
+    }
+
+    private static DataSource init2() {
+        DruidDataSource ds = new DruidDataSource();
+        ds.setDriverClassName("org.apache.derby.jdbc.EmbeddedDriver");
+        ds.setUrl("jdbc:derby:/home/bochenlong/derbys/mydb");
+        ds.setUsername("");
+        ds.setPassword("");
+        ds.setInitialSize(500);
+        ds.setMinIdle(500);
+        ds.setMaxActive(3000);
+        ds.setMaxWait(60000);
+        ds.setValidationQuery("values 1");
+        ds.setValidationQueryTimeout(10);
+        ds.setTestWhileIdle(true);
+        ds.setTestOnBorrow(false);
+        ds.setTestOnReturn(false);
         return ds;
     }
 

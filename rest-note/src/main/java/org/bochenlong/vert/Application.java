@@ -15,7 +15,7 @@ import org.bochenlong.vert.hander.RouterRegister;
 public class Application extends AbstractVerticle {
     private static int PROCESSOR_NUM = Runtime.getRuntime().availableProcessors();
     private static String SERVER_HOST = "localhost";
-    private static int SERVER_PORT = 8080;
+    private static int SERVER_PORT = 8888;
 
     @Override
     public void start() throws Exception {

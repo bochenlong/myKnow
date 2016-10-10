@@ -44,6 +44,15 @@ public class UserDao {
         logger.debug("the sql is {}", input.getQueryString());
         logger.debug("params is {}", input.getQueryParameters().toMap());
 
+        runnerUpdate(runner, input);
+    }
+
+    public void deleteAll() {
+        MapInputHandler input = new MapInputHandler("delete from user_", null);
+        runnerUpdate(runner, input);
+    }
+
+    private void runnerUpdate(QueryRunnerService runner, MapInputHandler input) {
         try {
             runner.update(input);
             runner.commit();

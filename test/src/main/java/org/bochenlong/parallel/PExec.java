@@ -31,7 +31,7 @@ public class PExec {
 
         for (Future f : fs) {
             try {
-                f.get(30, TimeUnit.MINUTES);
+                f.get(5, TimeUnit.MINUTES);
                 longAdder.increment();
                 System.out.println(longAdder.longValue());
             } catch (InterruptedException e) {

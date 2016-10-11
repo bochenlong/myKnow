@@ -1,6 +1,5 @@
 package org.bochenlong.orm;
 
-import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;
 import org.bochenlong.parallel.PExec;
 

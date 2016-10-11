@@ -2,7 +2,6 @@ package org.bochenlong.dao;
 
 import org.bochenlong.parallel.PExec;
 
-import java.util.UUID;
 import java.util.concurrent.Callable;
 
 /**
@@ -22,5 +21,7 @@ public class UserDaoTest {
 //            return 1;
         };
         PExec.exec(1000, 10000, callable);
+
     }
+
 }

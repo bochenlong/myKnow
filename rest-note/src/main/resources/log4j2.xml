@@ -1,38 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info">
-    <properties name="logPath">/home/bochenlong/temp</properties>
+    <properties>
+        <property name="logPath">/home/bochenlong/temp</property>
+    </properties>
     <Appenders>
         <Console name="STDOUT" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy/MM/dd HH:mm:ss,SSS} %-5p [%t] %C >>> %m%n"/>
+            <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
         </Console>
         <RollingRandomAccessFile name="default" fileName="${logPath}/default.log"
-                                 filePattern="${logPath}/$${date:yyyy-MM}/default-%d{MM-dd-yyyy}-%i.log.gz">
+                                 filePattern="${logPath}/%d{yyyy-MM}/default-%d{MM-dd-yyyy}.log">
             <PatternLayout>
                 <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
             </PatternLayout>
             <Policies>
-                <TimeBasedTriggeringPolicy interval="6" modulate="true"/>
-                <SizeBasedTriggeringPolicy size="250 MB"/>
+                <TimeBasedTriggeringPolicy interval="8" modulate="true"/>
             </Policies>
-            <DefaultRolloverStrategy max="20"/>
+            <DefaultRolloverStrategy max="30"/>
         </RollingRandomAccessFile>
 
-        <RollingRandomAccessFile name="data" fileName="${logPath}/data.log"
-                                 filePattern="${logPath}/$${date:yyyy-MM}/data-%d{MM-dd-yyyy}-%i.log.gz">
-            <PatternLayout>
-                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
-            </PatternLayout>
-            <Policies>
-                <TimeBasedTriggeringPolicy interval="6" modulate="true"/>
-                <SizeBasedTriggeringPolicy size="250 MB"/>
-            </Policies>
-            <DefaultRolloverStrategy max="20"/>
-        </RollingRandomAccessFile>
     </Appenders>
     <Loggers>
-        <AsyncLogger name="org.bochenlong.dao" level="info">
-            <AppenderRef ref="data"/>
-        </AsyncLogger>
         <Root level="info">
             <AppenderRef ref="STDOUT"/>
             <AppenderRef ref="default"/>

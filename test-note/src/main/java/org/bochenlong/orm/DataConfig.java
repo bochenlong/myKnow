@@ -54,7 +54,7 @@ public class DataConfig {
         TransactionFactory transactionFactory = new JdbcTransactionFactory();
         Environment environment = new Environment("development", transactionFactory, ds);
         Configuration configuration = new Configuration(environment);
-        configuration.addMappers("org.bochenlong.orm");
+        configuration.addMappers("org.bochenlong.orm",IMybatisMapper.class);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
         return sqlSessionFactory;
     }

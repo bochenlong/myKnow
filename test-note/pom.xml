@@ -58,4 +58,17 @@
             <version>3.4.1</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>test-note</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>

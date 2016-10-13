@@ -3,6 +3,7 @@ package org.bochenlong.orm;
 import org.apache.ibatis.session.SqlSession;
 import org.bochenlong.parallel.PExec;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.UUID;
 import java.util.concurrent.Callable;
@@ -12,8 +13,14 @@ import java.util.concurrent.Callable;
  */
 public class OrmTest {
     public static void main(String[] args) {
-        mybatisTest();
-//        midaoTest();
+        System.out.println(SqlSession.class.getPackage().getName());
+        System.out.println(SqlSession.class.getResource("/"));
+        File file = new File(SqlSession.class.getResource("/")+SqlSession.class.getPackage()
+                .getName());
+        File[] files = file.listFiles();
+        for(File f : files) {
+            System.out.println(f.getName());
+        }
     }
 
     private static void midaoTest() {

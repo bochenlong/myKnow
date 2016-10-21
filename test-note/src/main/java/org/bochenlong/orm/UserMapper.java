@@ -11,4 +11,9 @@ public interface UserMapper extends IMybatisMapper {
     void insert(@Param("user") User user);
 
     void deleteAll();
+
+    User selectById(String id);
+
+    void insertByRecord(User user);
+
 }

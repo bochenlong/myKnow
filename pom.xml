@@ -23,6 +23,7 @@
         <module>derby-note</module>
         <module>test-note</module>
         <module>rest-note</module>
+        <module>orm-note</module>
     </modules>
 
     <!-- Add typical dependencies for a web application -->

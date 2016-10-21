@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.bochenlong.orm.UserMapper" >
-  <delete id="deleteAll">
-    delete from user_
-  </delete>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.bochenlong.orm.UserMapper">
+    <delete id="deleteAll">
+        delete from user_
+    </delete>
+
+    <select id="selectById" parameterType="java.lang.String"
+            resultType="org.bochenlong.orm.User">
+        select * from user_ where id = #{id}
+    </select>
+
+    <insert id="insertByRecord" parameterType="org.bochenlong.orm.User">
+        insert into user_ values (#{id},#{name},#{password},#{createTime})
+    </insert>
 
 </mapper>

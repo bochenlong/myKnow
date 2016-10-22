@@ -7,21 +7,33 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>derby-note</artifactId>
+    <artifactId>db-note</artifactId>
     <packaging>jar</packaging>
 
-    <name>derby-note</name>
+    <name>db-note</name>
     <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <derby.version>10.9.1.0</derby.version>
+        <mysqljdbc.version>6.0.4</mysqljdbc.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.midao</groupId>
-            <artifactId>midao-jdbc-core</artifactId>
-            <version>0.9.4</version>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>${derby.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyclient</artifactId>
+            <version>${derby.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version></version>
         </dependency>
         <dependency>
             <groupId>org.bochenlong</groupId>

@@ -8,12 +8,15 @@
             <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
         </Console>
         <RollingRandomAccessFile name="default" fileName="${logPath}/default.log"
-                                 filePattern="${logPath}/%d{yyyy-MM}/default-%d{MM-dd-yyyy}.log">
+                                 filePattern="${logPath}/$${date:yyyy-MM}/default-%d{MM-dd-yyyy}.log"
+                                 immediateFlush="false"
+                                 bufferSize="524288"
+        >
             <PatternLayout>
                 <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
             </PatternLayout>
             <Policies>
-                <TimeBasedTriggeringPolicy interval="8" modulate="true"/>
+                <TimeBasedTriggeringPolicy/>
             </Policies>
             <DefaultRolloverStrategy max="30"/>
         </RollingRandomAccessFile>

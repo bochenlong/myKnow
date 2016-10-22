@@ -45,6 +45,7 @@ public class Application extends AbstractVerticle {
         System.out.println("server is ready to start");
 
         Vertx vertx = Vertx.vertx(new VertxOptions().setBlockedThreadCheckInterval(300000L));
+        // 多例部署，每个实例的配置在start里
         vertx.deployVerticle(Application.class.getName(),
                 new DeploymentOptions().setInstances(2 * PROCESSOR_NUM), e -> {
                     if (e.succeeded()) {

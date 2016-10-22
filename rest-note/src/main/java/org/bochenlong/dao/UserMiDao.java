@@ -18,13 +18,13 @@ import java.util.UUID;
 /**
  * Created by bochenlong on 16-9-22.
  */
-public class UserDao {
-    private Logger logger = LogManager.getLogger(UserDao.class);
+public class UserMiDao {
+    private Logger logger = LogManager.getLogger(UserMiDao.class);
 
     private QueryRunnerService runner;
     private Connection conn;
 
-    public UserDao() {
+    public UserMiDao() {
         conn = DataConfig.getConnection();
         this.runner = MjdbcFactory.getQueryRunner(conn);
     }

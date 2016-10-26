@@ -10,28 +10,20 @@ import javax.persistence.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer addressId;
+    private Integer id;
 
     private String address;
 
     @ManyToOne
-    @JoinColumn(name = "id")
-    private User user;
+    @JoinColumn(name = "person_id")
+    private Person person;
 
-    public Integer getAddressId() {
-        return addressId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setAddressId(Integer addressId) {
-        this.addressId = addressId;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getAddress() {
@@ -40,5 +32,13 @@ public class Address {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

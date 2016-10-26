@@ -1,34 +1,32 @@
 package org.bochenlong.jpa;
 
 import org.bochenlong.bean.jpa.Address;
-import org.bochenlong.bean.jpa.User;
+import org.bochenlong.bean.jpa.Person;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by bochenlong on 16-10-17.
  */
 public class JpaNote {
     public static void main(String[] args) {
-        User user = new User();
-        user.setName("abc");
-        user.setId(1);
+        Person p = new Person();
+        p.setFullname("abc");
+        p.setId(2);
         Address address = new Address();
-        address.setAddressId(1);
+        address.setPerson(p);
         address.setAddress("abc");
-        user.addAddress(address);
-        insert(user);
+        p.addAddress(address);
+        insert(p);
     }
 
-    public static void insert(User user) {
+    public static void insert(Person p) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("myJpa");
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
-        em.persist(user);
+        em.persist(p);
         em.getTransaction().commit();
         em.close();
         factory.close();

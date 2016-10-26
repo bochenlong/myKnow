@@ -26,7 +26,7 @@ public class MiniDaoQuery {
      * @throws SQLException
      */
     private static void queryDemosWithSetProperties() throws SQLException {
-        QueryRunnerService runner = MjdbcFactory.getQueryRunner(DataConfig.getConnection());
+        QueryRunnerService runner = MjdbcFactory.getQueryRunner(DataConfig.getHikariConnection());
         // 关联查询表
         String sql = "select d.*,a.* from user d inner join address a on d.id = a.id";
         InputHandler inputHandler = new QueryInputHandler(sql, null);

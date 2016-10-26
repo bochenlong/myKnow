@@ -26,7 +26,6 @@
         <module>util-note</module>
     </modules>
 
-    <!-- Add typical dependencies for a web application -->
     <dependencies>
     </dependencies>
 

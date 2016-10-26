@@ -8,15 +8,15 @@ import java.util.List;
  * Created by bochenlong on 16-10-26.
  */
 @Entity
-@Table(name = "User")
-public class User {
+@Table(name = "Person")
+public class Person {
     @Id
-    @Column(name = "id", columnDefinition = "int")
+    @Column(name = "person_id")
     private Integer id;
-    @Column(name = "name",columnDefinition = "varchar(100")
-    private String name;
 
-    @OneToMany(mappedBy = "address")
+    private String fullname;
+
+    @OneToMany(mappedBy = "person",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
 
     public Integer getId() {
@@ -27,12 +27,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public List<Address> getAddresses() {

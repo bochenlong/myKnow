@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>myKnow</artifactId>
         <groupId>org.bochenlong</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
     <artifactId>db-note</artifactId>
     <packaging>jar</packaging>
@@ -14,12 +14,24 @@
     <url>http://maven.apache.org</url>
 
     <properties>
+        <c3p0.version>0.9.5.2</c3p0.version>
+        <druid.version>1.0.26</druid.version>
         <hikaricp.version>2.5.1</hikaricp.version>
         <derby.version>10.9.1.0</derby.version>
         <mysqljdbc.version>6.0.4</mysqljdbc.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>${c3p0.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.26</version>
+        </dependency>
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
@@ -44,7 +56,6 @@
             <groupId>org.bochenlong</groupId>
             <artifactId>test</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

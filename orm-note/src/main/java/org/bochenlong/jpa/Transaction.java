@@ -1,4 +1,4 @@
-package org.bochenlong.bean;
+package org.bochenlong.jpa;
 
 import javax.persistence.MappedSuperclass;
 import java.net.URI;

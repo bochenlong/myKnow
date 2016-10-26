@@ -4,19 +4,16 @@
              version="2.0">
     <persistence-unit name="myJpa">
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect"/>
             <property name="hibernate.hikari.dataSourceClassName"
-                      value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource"/>
-            <property name="hibernate.hikari.dataSource.url" value="jdbc:mysql://localhost:3307
-                /mydb?zeroDateTimeBehavior=convertToNull"></property>
-            <property name="hibernate.hikari.dataSource.user" value="root"/>
-            <property name="hibernate.hikari.dataSource.password" value="root"/>
-            <!--<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>-->
-            <!--<property name="hibernate.connection.username" value="root"/>-->
-            <!--<property name="hibernate.connection.password" value="root"/>-->
-            <!--<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/mydb"/>-->
+                      value="org.apache.derby.jdbc.ClientDriver"/>
+            <property name="hibernate.hikari.dataSource.url"
+                      value="jdbc:derby://localhost:1527//home/bochenlong/derbys/mydb"/>
+            <property name="hibernate.hikari.dataSource.user" value="app"/>
+            <property name="hibernate.hikari.dataSource.password" value="app"/>
             <property name="hibernate.max_fetch_depth" value="3"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>

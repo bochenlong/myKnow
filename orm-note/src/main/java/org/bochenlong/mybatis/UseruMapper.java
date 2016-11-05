@@ -2,6 +2,7 @@ package org.bochenlong.mybatis;
 
 import org.bochenlong.bean.mybatis.Location;
 import org.bochenlong.bean.mybatis.Useru;
+import org.bochenlong.commonmapper.BaseMapper;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,7 @@ import java.util.Map;
 /**
  * Created by bochenlong on 16-10-26.
  */
-public interface UseruMapper extends IMybatisMapper {
+public interface UseruMapper extends BaseMapper<Useru> {
     void insertUser(Useru user);
 
     void insertLocation(Location location);

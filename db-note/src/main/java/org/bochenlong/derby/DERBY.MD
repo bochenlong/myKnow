@@ -16,3 +16,7 @@ CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.fullAccessUsers','ro
 5、设置默认连接方式
 CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.defaultConnectionMode','noAccess');
 在ij工具中执行以上命令，重新启动derby数据库服务，再次连接数据库时就需要用户密码认证了。
+
+
+
+#### varchar最大长度 32672

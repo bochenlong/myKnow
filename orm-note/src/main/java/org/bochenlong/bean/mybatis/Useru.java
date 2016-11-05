@@ -1,5 +1,6 @@
 package org.bochenlong.bean.mybatis;
 
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import java.util.List;
 public class Useru {
     private Integer id;
     private String fullname;
+
+    @Transient
     private List<Location> locations = new ArrayList<>();
 
     public Integer getId() {

@@ -13,8 +13,8 @@ import java.util.Map;
  */
 public class MybatisNode {
     public static void main(String[] args) {
-//        insert();
-        selectByParamsMap();
+        insert();
+//        selectByParamsMap();
     }
 
     public static void insert() {
@@ -22,14 +22,14 @@ public class MybatisNode {
         try {
             UseruMapper userMapper = sqlSession.getMapper(UseruMapper.class);
             Useru user = new Useru();
-            user.setId(1);
+            user.setId(102);
             user.setFullname("abc");
             Location location = new Location();
-            location.setId(1);
+            location.setId(102);
             location.setLocation("abc");
-            location.setUserId(1);
+            location.setUserId(102);
             userMapper.insertLocation(location);
-            userMapper.insertUser(user);
+            userMapper.insertSelective(user);
         } catch (Exception e) {
             sqlSession.rollback();
             e.printStackTrace();

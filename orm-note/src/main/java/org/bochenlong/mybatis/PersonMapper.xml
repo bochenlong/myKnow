@@ -51,8 +51,8 @@
         from person p
         inner join address a on p.id = a.personid
         <where>
-            <if test="userId != null">
-                u.id = #{personId,jdbcType=INTEGER}
+            <if test="personId != null">
+                p.id = #{personId,jdbcType=INTEGER}
             </if>
         </where>
     </select>

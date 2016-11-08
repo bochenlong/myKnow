@@ -1,11 +1,12 @@
 package org.bochenlong.mybatis;
 
 import org.apache.ibatis.session.SqlSession;
-import org.bochenlong.bean.mybatis.Location;
-import org.bochenlong.bean.mybatis.Useru;
+import org.bochenlong.mybatis.bean.Address;
+import org.bochenlong.mybatis.bean.Person;
+import org.bochenlong.mybatis.config.MybatisConfig;
+import org.bochenlong.print.PrintUt;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,40 +14,69 @@ import java.util.Map;
  */
 public class MybatisNode {
     public static void main(String[] args) {
-        insert();
-//        selectByParamsMap();
+//        insertSelective();
+//        selectByPrimaryKey();
+        selectJoinByParamsMap();
     }
 
-    public static void insert() {
+
+    public static void insertSelective() {
         SqlSession sqlSession = MybatisConfig.sqlSessionFactory.openSession();
+        PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
+        AddressMapper addressMapper = sqlSession.getMapper(AddressMapper.class);
         try {
-            UseruMapper userMapper = sqlSession.getMapper(UseruMapper.class);
-            Useru user = new Useru();
-            user.setId(102);
-            user.setFullname("abc");
-            Location location = new Location();
-            location.setId(102);
-            location.setLocation("abc");
-            location.setUserId(102);
-            userMapper.insertLocation(location);
-            userMapper.insertSelective(user);
+            Person person = new Person();
+            person.setRealName("bochenlong");
+            person.setSex('1');
+            // 默认 返回更新条数
+            int id = personMapper.insertSelective(person);
+
+            Address address = new Address();
+            address.setCity("beijing");
+            address.setProvince("beijing");
+            // 通过mapper实现返回person id
+            address.setPersonId(person.getId());
+            PrintUt.print("id is ", person.getId());
+
+            addressMapper.insertSelective(address);
+
+
+            sqlSession.commit();
         } catch (Exception e) {
             sqlSession.rollback();
             e.printStackTrace();
+        } finally {
+            sqlSession.close();
         }
-        sqlSession.commit();
-        sqlSession.close();
+
     }
 
-    /**
-     * 联合查询
-     */
-    public static void selectByParamsMap() {
+
+    public static void selectByPrimaryKey() {
         SqlSession sqlSession = MybatisConfig.sqlSessionFactory.openSession();
-        UseruMapper userMapper = sqlSession.getMapper(UseruMapper.class);
-        Map<String, Object> paramsMap = new HashMap<>();
-        paramsMap.put("userId",1);
-        List<Useru> list = userMapper.selectByParamsMap(paramsMap);
-        System.out.println(list.size());
+        PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
+        try {
+            Person person = personMapper.selectByPrimaryKey(1);
+            PrintUt.print("person is", person);
+        } finally {
+            sqlSession.close();
+        }
     }
+
+    public static void selectJoinByParamsMap() {
+        SqlSession sqlSession = MybatisConfig.sqlSessionFactory.openSession();
+        PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
+        try {
+            Map<String, Object> map = new HashMap() {{
+                put("personId", 1);
+            }};
+
+            Person person = personMapper.selectJoinByParamsMap(map);
+            PrintUt.print("person is", person);
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+
 }

@@ -1,4 +1,4 @@
-package org.bochenlong.mybatis;
+package org.bochenlong.mybatis.config;
 
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -13,6 +13,7 @@ import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.bochenlong.commonmapper.BaseMapper;
 import org.bochenlong.commonmapper.BaseMapperHelper;
 import org.bochenlong.datasource.DataConfig;
+import org.bochenlong.mybatis.IMybatis;
 
 /**
  * Created by bochenlong on 16-9-22.
@@ -27,9 +28,10 @@ public class MybatisConfig {
      */
     private static SqlSessionFactory init() {
         TransactionFactory transactionFactory = new JdbcTransactionFactory();
-        Environment environment = new Environment("development", transactionFactory, DataConfig.c3p0);
+        Environment environment = new Environment("development", transactionFactory, DataConfig.hikari);
         Configuration configuration = new Configuration(environment);
-        processConfiguration(configuration);
+        configuration.addMappers("org.bochenlong.mybatis", IMybatis.class);
+//        processConfiguration(configuration);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
         return sqlSessionFactory;
     }

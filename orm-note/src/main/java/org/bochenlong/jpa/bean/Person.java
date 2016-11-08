@@ -1,4 +1,4 @@
-package org.bochenlong.bean.jpa;
+package org.bochenlong.jpa.bean;
 
 import javax.persistence.*;
 import java.util.ArrayList;

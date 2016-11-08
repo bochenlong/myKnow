@@ -1,18 +1,16 @@
 package org.bochenlong.orm;
 
 import org.apache.ibatis.session.SqlSession;
-import org.bochenlong.bean.jpa.Address;
-import org.bochenlong.bean.jpa.Person;
-import org.bochenlong.bean.mybatis.Location;
-import org.bochenlong.bean.mybatis.Useru;
+import org.bochenlong.jpa.bean.Address;
+import org.bochenlong.jpa.bean.Person;
+import org.bochenlong.mybatis.bean.Location;
+import org.bochenlong.mybatis.bean.Useru;
 import org.bochenlong.jpa.JpaConfig;
-import org.bochenlong.mybatis.MybatisConfig;
-import org.bochenlong.mybatis.UseruMapper;
+import org.bochenlong.mybatis.config.MybatisConfig;
+import org.bochenlong.mybatis.PersonMapper;
 import org.bochenlong.parallel.PExec;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.LongAdder;
 
@@ -43,7 +41,7 @@ public class OrmTest {
     private static void mybatisTest() {
         SqlSession sqlSession = MybatisConfig.sqlSessionFactory.openSession();
         try {
-            UseruMapper userMapper = sqlSession.getMapper(UseruMapper.class);
+            PersonMapper userMapper = sqlSession.getMapper(PersonMapper.class);
             int id = generateId();
             userMapper.insertUser(generateUser(id));
             userMapper.insertLocation(generateLocation(id));

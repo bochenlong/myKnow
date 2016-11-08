@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bochenlong.mybatis.PersonMapper">
+    <insert id="insertSelective" parameterType="org.bochenlong.mybatis.bean.Person"
+    > <!-- useGeneratedKeys="true" keyProperty="id" 会根据数据自动生成主键 -->
+        <selectKey keyProperty="id" resultType="int" order="AFTER">
+            VALUES IDENTITY_VAL_LOCAL() <!-- 插入之后，查询主键，赋值给id -->
+        </selectKey>
+
+        insert into PERSON
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="realName != null">
+                realName,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <resultMap id="PersonResultMap" type="org.bochenlong.mybatis.bean.Person">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="realName" property="realName" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="CHAR"/>
+        <association property="addresses" column="personid" javaType="org.bochenlong.mybatis.bean.Address">
+            <!-- 关联的列，如果列重复可以用别名代替，但是一定要出现在sql里 -->
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result column="street" property="street" jdbcType="VARCHAR"/>
+            <result column="city" property="city" jdbcType="VARCHAR"/>
+            <result column="province" property="province" jdbcType="VARCHAR"/>
+            <result column="personid" property="personId" jdbcType="INTEGER"/>
+        </association>
+    </resultMap>
+
+    <select id="selectJoinByParamsMap" parameterType="map" resultMap="PersonResultMap">
+        select p.id,p.realName,p.sex,a.personid,a.street,a.city,a.province
+        from person p
+        inner join address a on p.id = a.personid
+        <where>
+            <if test="userId != null">
+                u.id = #{personId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,7 +1,7 @@
 package org.bochenlong.jpa;
 
-import org.bochenlong.bean.jpa.Address;
-import org.bochenlong.bean.jpa.Person;
+import org.bochenlong.jpa.bean.Address;
+import org.bochenlong.jpa.bean.Person;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

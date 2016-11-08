@@ -6,17 +6,17 @@ import org.bochenlong.mybatis.bean.Person;
 import org.bochenlong.mybatis.config.MybatisConfig;
 import org.bochenlong.print.PrintUt;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by bochenlong on 16-10-26.
  */
 public class MybatisNode {
     public static void main(String[] args) {
-//        insertSelective();
+        insertSelective();
 //        selectByPrimaryKey();
-        selectJoinByParamsMap();
+//        selectJoinByParamsMap();
+        deleteByPrimaryKeys();
     }
 
 
@@ -73,6 +73,20 @@ public class MybatisNode {
 
             Person person = personMapper.selectJoinByParamsMap(map);
             PrintUt.print("person is", person);
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    public static void deleteByPrimaryKeys() {
+        SqlSession sqlSession = MybatisConfig.sqlSessionFactory.openSession();
+        PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
+        try {
+            List<Integer> ids = Arrays.asList(1, 2);
+//            List<Integer> ids = new ArrayList<>();
+            int i = personMapper.deleteByPrimaryKeys(ids);
+            PrintUt.print("delete is ", i);
+            sqlSession.commit();
         } finally {
             sqlSession.close();
         }

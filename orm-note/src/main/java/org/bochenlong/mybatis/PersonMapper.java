@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Select;
 import org.bochenlong.mybatis.bean.Person;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,4 +19,6 @@ public interface PersonMapper extends IMybatis {
     Person selectByPrimaryKey(@Param("id") int id);
 
     Person selectJoinByParamsMap(Map<String, Object> paramsMap);
+
+    int deleteByPrimaryKeys(List<Integer> ids);
 }

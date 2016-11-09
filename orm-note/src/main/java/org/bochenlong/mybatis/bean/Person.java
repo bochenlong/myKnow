@@ -1,5 +1,6 @@
 package org.bochenlong.mybatis.bean;
 
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class Person {
     private String realName;
     private Character sex;
 
+    @Transient
     private List<Address> addresses = new ArrayList<>();
 
     public Integer getId() {

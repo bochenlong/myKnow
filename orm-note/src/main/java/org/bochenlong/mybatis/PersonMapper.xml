@@ -46,13 +46,19 @@
         </association>
     </resultMap>
 
-    <select id="selectJoinByParamsMap" parameterType="map" resultMap="PersonResultMap">
+    <select id="selectJoinByParamsMap" parameterType="map" resultMap="PersonResultMap" resultType="list">
         select p.id,p.realName,p.sex,a.personid,a.street,a.city,a.province
         from person p
         inner join address a on p.id = a.personid
         <where>
             <if test="personId != null">
-                p.id = #{personId,jdbcType=INTEGER}
+                and p.id = #{personId,jdbcType=INTEGER} <!-- personId为key -->
+            </if>
+            <if test="personIds != null">
+                and p.id in
+                <foreach collection="personIds" item="item" index="index" separator="," open="(" close=")">
+                    #{item,jdbcType=INTEGER}
+                </foreach>
             </if>
         </where>
     </select>

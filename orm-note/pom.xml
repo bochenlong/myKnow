@@ -18,6 +18,8 @@
         <midao.version>0.9.4</midao.version>
         <hibernate.version>5.2.3.Final</hibernate.version>
         <mybatis.version>3.4.1</mybatis.version>
+        <mapper.version>3.3.9</mapper.version>
+        <pagehelper.version>4.1.6</pagehelper.version>
     </properties>
 
     <dependencies>
@@ -41,6 +43,16 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>${mybatis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${mapper.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>${pagehelper.version}</version>
         </dependency>
 
         <dependency>

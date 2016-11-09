@@ -18,7 +18,7 @@ public interface PersonMapper extends IMybatis {
     @Select("select * from person where id = #{id}")
     Person selectByPrimaryKey(@Param("id") int id);
 
-    Person selectJoinByParamsMap(Map<String, Object> paramsMap);
+    List<Person> selectJoinByParamsMap(Map<String, Object> paramsMap);
 
     int deleteByPrimaryKeys(List<Integer> ids);
 }

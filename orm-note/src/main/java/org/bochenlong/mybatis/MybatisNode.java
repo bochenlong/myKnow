@@ -13,10 +13,10 @@ import java.util.*;
  */
 public class MybatisNode {
     public static void main(String[] args) {
-        insertSelective();
+//        insertSelective();
 //        selectByPrimaryKey();
-//        selectJoinByParamsMap();
-        deleteByPrimaryKeys();
+        selectJoinByParamsMap();
+//        deleteByPrimaryKeys();
     }
 
 
@@ -68,10 +68,11 @@ public class MybatisNode {
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
         try {
             Map<String, Object> map = new HashMap() {{
-                put("personId", 1);
+//                put("personId", 1);
+                put("personIds",Arrays.asList(3,4,5));
             }};
 
-            Person person = personMapper.selectJoinByParamsMap(map);
+            List<Person> person = personMapper.selectJoinByParamsMap(map);
             PrintUt.print("person is", person);
         } finally {
             sqlSession.close();
@@ -83,7 +84,6 @@ public class MybatisNode {
         PersonMapper personMapper = sqlSession.getMapper(PersonMapper.class);
         try {
             List<Integer> ids = Arrays.asList(1, 2);
-//            List<Integer> ids = new ArrayList<>();
             int i = personMapper.deleteByPrimaryKeys(ids);
             PrintUt.print("delete is ", i);
             sqlSession.commit();

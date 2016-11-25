@@ -13,9 +13,9 @@ import java.util.*;
  */
 public class MybatisNode {
     public static void main(String[] args) {
-//        insertSelective();
+        insertSelective();
 //        selectByPrimaryKey();
-        selectJoinByParamsMap();
+//        selectJoinByParamsMap();
 //        deleteByPrimaryKeys();
     }
 

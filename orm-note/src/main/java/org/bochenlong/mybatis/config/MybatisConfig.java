@@ -78,6 +78,7 @@ public class MybatisConfig {
         MapperHelper mapperHelper = new MapperHelper();
         Config config = new Config();
         config.setStyle(Style.normal);
+        config.setIDENTITY("VALUES IDENTITY_VAL_LOCAL()");
         mapperHelper.setConfig(config);
         mapperHelper.registerMapper(Mapper.class);
         mapperHelper.processConfiguration(configuration);

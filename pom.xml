@@ -24,6 +24,7 @@
         <module>rest-note</module>
         <module>orm-note</module>
         <module>util-note</module>
+        <module>netty-note</module>
     </modules>
 
     <dependencies>

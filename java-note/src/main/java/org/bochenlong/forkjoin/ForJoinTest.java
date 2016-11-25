@@ -1,6 +1,5 @@
 package org.bochenlong.forkjoin;
 
-import org.bochenlong.forkjoin.TaskResult;
 import org.bochenlong.time8.TimeUt;
 
 import java.util.concurrent.ExecutionException;

@@ -1,5 +1,8 @@
 package org.bochenlong.mybatis.bean;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +11,8 @@ import java.util.List;
  * Created by bochenlong on 16-11-8.
  */
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String realName;
     private Character sex;

@@ -7,8 +7,8 @@ import java.util.Map;
  * Created by bochenlong on 16-10-18.
  */
 public class EmptyJudgeUtil {
-    public static boolean isNotNullAndEmpty(byte[] bytes) {
-        return bytes != null && bytes.length != 0;
+    public static <T> boolean isNotNullAndEmpty(T[] t) {
+        return t != null && t.length != 0;
     }
 
     public static boolean isNotNullAndEmpty(Map<?, ?> map) {
@@ -23,7 +23,4 @@ public class EmptyJudgeUtil {
         return str != null && str.length() != 0;
     }
 
-    public static void main(String[] args) {
-        System.out.println("".length());
-    }
 }

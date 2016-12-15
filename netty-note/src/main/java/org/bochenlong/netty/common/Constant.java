@@ -1,4 +1,4 @@
-package org.bochenlong.pdxnetty;
+package org.bochenlong.netty.common;
 
 /**
  * Created by bochenlong on 16-11-15.

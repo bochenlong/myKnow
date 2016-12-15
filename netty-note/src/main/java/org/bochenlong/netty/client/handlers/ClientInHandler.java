@@ -1,4 +1,4 @@
-package org.bochenlong.pdxnetty.client.handlers;
+package org.bochenlong.netty.client.handlers;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -14,13 +14,13 @@ public class ClientInHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        logger.info("channel read {}", ctx);
+        logger.debug("channel read {}", ctx);
         ReferenceCountUtil.release(msg);
     }
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        logger.info("channel read complete {}", ctx);
+        logger.debug("channel read complete {}", ctx);
     }
 
     @Override
@@ -32,22 +32,22 @@ public class ClientInHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        logger.info("channel active {}", ctx);
+        logger.debug("channel active {}", ctx);
     }
 
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
-        logger.info("channel registered {}", ctx);
+        logger.debug("channel registered {}", ctx);
     }
 
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-        logger.info("channel unregistered {}", ctx);
+        logger.debug("channel unregistered {}", ctx);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        logger.info("channel inactive {}", ctx);
+        logger.debug("channel inactive {}", ctx);
     }
 
     @Override

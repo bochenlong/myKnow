@@ -1,4 +1,4 @@
-package org.bochenlong.pdxnetty.resp;
+package org.bochenlong.netty.resp;
 
 import java.util.concurrent.*;
 

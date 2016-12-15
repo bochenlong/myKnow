@@ -1,4 +1,4 @@
-package org.bochenlong.pdxnetty.client;
+package org.bochenlong.netty.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
@@ -7,10 +7,11 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bochenlong.pdxnetty.client.handlers.ClientInHandler;
-import org.bochenlong.pdxnetty.codec.MessageDecoder;
-import org.bochenlong.pdxnetty.codec.MessageEncoder;
-import org.bochenlong.pdxnetty.config.NettyConfig;
+import org.bochenlong.netty.NettyChannel;
+import org.bochenlong.netty.client.handlers.ClientInHandler;
+import org.bochenlong.netty.codec.MessageDecoder;
+import org.bochenlong.netty.codec.MessageEncoder;
+import org.bochenlong.netty.config.NettyConfig;
 
 /**
  * Created by bochenlong on 16-11-3.
@@ -18,7 +19,7 @@ import org.bochenlong.pdxnetty.config.NettyConfig;
 public class NettyClient {
     private static Logger logger = LogManager.getLogger(NettyClient.class);
 
-    private Channel channel;
+    private volatile Channel channel;
 
     public NettyClient(String host) {
         connect(host, NettyConfig.DEFAULT_PORT);
@@ -52,6 +53,9 @@ public class NettyClient {
 
             ChannelFuture future = bootstrap.connect(host, port).sync();
             this.channel = future.channel();
+
+            NettyChannel.addChannel(host, channel);
+
             logger.info("NettyClient connect ok {} - {}", host, port);
             this.channel.closeFuture().addListener(a -> {
                 logger.info("NettyClient connect close {} - {}", host, port);
@@ -66,7 +70,13 @@ public class NettyClient {
         }
     }
 
-    public void close() {
+    public void disConnect() {
+        this.channel.close();
+    }
+
+    public void reConnect(String host,)
+
+    private void close() {
         workGroup.shutdownGracefully();
         logger.info("NettyClient close over");
     }

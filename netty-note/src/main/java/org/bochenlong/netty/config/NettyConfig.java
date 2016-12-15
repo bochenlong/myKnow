@@ -1,6 +1,6 @@
-package org.bochenlong.pdxnetty.config;
+package org.bochenlong.netty.config;
 
-import org.bochenlong.pdxnetty.NettyHelper;
+import org.bochenlong.netty.NettyHelper;
 
 /**
  * Created by bochenlong on 16-10-24.

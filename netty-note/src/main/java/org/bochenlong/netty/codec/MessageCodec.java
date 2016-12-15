@@ -1,4 +1,4 @@
-package org.bochenlong.pdxnetty.codec;
+package org.bochenlong.netty.codec;
 
 import io.protostuff.LinkedBuffer;
 import io.protostuff.ProtostuffIOUtil;

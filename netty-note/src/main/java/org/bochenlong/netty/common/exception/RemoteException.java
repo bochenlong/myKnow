@@ -1,4 +1,4 @@
-package org.bochenlong.pdxnetty.exception;
+package org.bochenlong.netty.common.exception;
 
 /**
  * Created by bochenlong on 16-11-14.

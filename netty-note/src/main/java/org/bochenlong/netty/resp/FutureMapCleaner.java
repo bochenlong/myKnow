@@ -1,7 +1,7 @@
-package org.bochenlong.pdxnetty.resp;
+package org.bochenlong.netty.resp;
 
 import biz.pdxtech.daap.p2p.pdxnetty.P2pNettyUtil;
-import org.bochenlong.pdxnetty.NettyHelper;
+import org.bochenlong.netty.NettyHelper;
 
 import java.util.Map;
 import java.util.concurrent.Executors;

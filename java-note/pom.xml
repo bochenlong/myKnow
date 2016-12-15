@@ -13,6 +13,7 @@
     <url>http://maven.apache.org</url>
 
     <properties>
+        <disruptor.version>3.3.6</disruptor.version>
     </properties>
 
     <dependencies>
@@ -20,6 +21,11 @@
             <groupId>org.bochenlong</groupId>
             <artifactId>test</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>${disruptor.version}</version>
         </dependency>
     </dependencies>
 </project>

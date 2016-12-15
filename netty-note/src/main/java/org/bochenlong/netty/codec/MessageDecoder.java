@@ -1,4 +1,4 @@
-package org.bochenlong.pdxnetty.codec;
+package org.bochenlong.netty.codec;
 
 import biz.pdxtech.daap.p2p.pdxnetty.message.P2pMessage;
 import io.netty.buffer.ByteBuf;

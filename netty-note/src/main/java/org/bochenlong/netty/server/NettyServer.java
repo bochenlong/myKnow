@@ -1,4 +1,4 @@
-package org.bochenlong.pdxnetty.server;
+package org.bochenlong.netty.server;
 
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -11,12 +11,12 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bochenlong.pdxnetty.codec.MessageDecoder;
-import org.bochenlong.pdxnetty.codec.MessageEncoder;
-import org.bochenlong.pdxnetty.config.NettyConfig;
-import org.bochenlong.pdxnetty.server.handlers.ServerAuthInHandler;
-import org.bochenlong.pdxnetty.server.handlers.ServerConnectInHandler;
-import org.bochenlong.pdxnetty.server.handlers.ServerP2pInHandler;
+import org.bochenlong.netty.codec.MessageDecoder;
+import org.bochenlong.netty.codec.MessageEncoder;
+import org.bochenlong.netty.config.NettyConfig;
+import org.bochenlong.netty.server.handlers.ServerAuthInHandler;
+import org.bochenlong.netty.server.handlers.ServerConnectInHandler;
+import org.bochenlong.netty.server.handlers.ServerP2pInHandler;
 
 /**
  * Created by bochenlong on 16-11-3.

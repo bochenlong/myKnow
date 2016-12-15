@@ -3,14 +3,27 @@ package org.bochenlong.disruptor.base;
 /**
  * Created by bochenlong on 16-12-14.
  */
-public class QueueData<T> {
-    private T t;
+public class QueueData {
+    private Object value;
 
-    public T getValue() {
-        return t;
+    public QueueData() {
+
     }
 
-    public void setValue(T t) {
-        this.t = t;
+    public QueueData(Object value) {
+        this.value = value;
+    }
+
+    public Object getValue() {
+        return value;
+    }
+
+    public void setValue(Object value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return value.toString();
     }
 }

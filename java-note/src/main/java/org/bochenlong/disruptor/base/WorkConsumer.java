@@ -4,11 +4,9 @@ import com.lmax.disruptor.WorkHandler;
 
 /**
  * Created by bochenlong on 16-12-14.
+ * <p>
+ * 当前Sequence的数据只能被一个WorkConsumer消费
  */
-public class WorkConsumer implements WorkHandler<QueueData> {
-    @Override
-    public void onEvent(QueueData queueData) throws Exception {
-        Thread.sleep(2000);
-        System.out.println("@@@@@@" + queueData.getValue());
-    }
+@FunctionalInterface
+public interface WorkConsumer extends WorkHandler<QueueData> {
 }

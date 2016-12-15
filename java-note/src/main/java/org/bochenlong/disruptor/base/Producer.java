@@ -12,11 +12,11 @@ public class Producer {
         this.ringBuffer = ringBuffer;
     }
 
-    public void pushData(long value) {
+    public void pushData(Object o) {
         long sequence = ringBuffer.next();
         try {
             QueueData event = ringBuffer.get(sequence);
-            event.setValue(value);
+            event.setValue(o);
         } finally {
             ringBuffer.publish(sequence);
         }

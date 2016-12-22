@@ -1,7 +1,7 @@
 package org.bochenlong.netty.config;
 
-import org.bochenlong.netty.server.auth.UserDefineAuth;
-import org.bochenlong.netty.server.auth.WhiteListAuth;
+import org.bochenlong.netty.server.auth.impl.UserDefineAuth;
+import org.bochenlong.netty.server.auth.impl.WhiteListAuth;
 
 import java.util.Set;
 import java.util.function.Consumer;

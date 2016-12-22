@@ -1,4 +1,4 @@
-package org.bochenlong.netty.server.auth;
+package org.bochenlong.netty.server.auth.impl;
 
 import io.netty.channel.ChannelHandlerContext;
 import org.bochenlong.EmptyJudgeUtil;

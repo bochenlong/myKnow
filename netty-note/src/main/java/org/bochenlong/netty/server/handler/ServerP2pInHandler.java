@@ -1,4 +1,4 @@
-package org.bochenlong.netty.server.handlers;
+package org.bochenlong.netty.server.handler;
 
 import biz.pdxtech.daap.p2p.P2pUtil;
 import biz.pdxtech.daap.p2p.pdxnetty.message.P2pMessage;

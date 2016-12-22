@@ -14,9 +14,8 @@ import org.apache.logging.log4j.Logger;
 import org.bochenlong.netty.codec.MessageDecoder;
 import org.bochenlong.netty.codec.MessageEncoder;
 import org.bochenlong.netty.config.NettyConfig;
-import org.bochenlong.netty.server.handlers.ServerAuthInHandler;
-import org.bochenlong.netty.server.handlers.ServerConnectInHandler;
-import org.bochenlong.netty.server.handlers.ServerP2pInHandler;
+import org.bochenlong.netty.server.handler.ServerAuthInHandler;
+import org.bochenlong.netty.server.handler.ServerP2pInHandler;
 
 /**
  * Created by bochenlong on 16-11-3.
@@ -48,7 +47,6 @@ public class NettyServer {
                                             NettyConfig.MSG_LEN_OFFSET,
                                             NettyConfig.MSG_LEN_FIELD));
                             ch.pipeline().addLast(new MessageEncoder());
-                            ch.pipeline().addLast(new ServerConnectInHandler());
                             ch.pipeline().addLast(new ServerAuthInHandler());
                             ch.pipeline().addLast(new ServerP2pInHandler());
                         }

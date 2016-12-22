@@ -1,4 +1,4 @@
-package org.bochenlong.netty.server.handlers;
+package org.bochenlong.netty.server.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

@@ -57,7 +57,7 @@ public class ClientInHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelWritabilityChanged(ChannelHandlerContext ctx) throws Exception {
-        logger.debug("channel writablity changed {}", ctx);
+        logger.debug("channel writability changed {}", ctx);
     }
 
 }

@@ -2,6 +2,9 @@ package org.bochenlong.netty.server.auth;
 
 import io.netty.channel.ChannelHandlerContext;
 import org.bochenlong.netty.config.AuthConfig;
+import org.bochenlong.netty.server.auth.impl.SingleConAuth;
+import org.bochenlong.netty.server.auth.impl.UserDefineAuth;
+import org.bochenlong.netty.server.auth.impl.WhiteListAuth;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;

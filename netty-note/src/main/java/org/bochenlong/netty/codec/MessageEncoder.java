@@ -12,12 +12,12 @@ import java.util.List;
  */
 public class MessageEncoder extends MessageToMessageEncoder<NettyMessage> {
     @Override
-    protected void encode(ChannelHandlerContext channelHandlerContext, NettyMessage p2pMessage, List<Object> list) throws Exception {
-        if (p2pMessage == null || p2pMessage.getHeader() == null) {
+    protected void encode(ChannelHandlerContext channelHandlerContext, NettyMessage message, List<Object> list) throws Exception {
+        if (message == null || message.getHeader() == null) {
             throw new Exception("The encode message is null");
         }
 
-        ByteBuf byteBuf = MessageEncoderUtil.encode(p2pMessage);
+        ByteBuf byteBuf = MessageEncoderUtil.encode(message);
 
         list.add(byteBuf);
     }

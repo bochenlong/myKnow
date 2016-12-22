@@ -74,15 +74,10 @@ public class NettyClient {
         this.channel.close();
     }
 
-    public void reConnect(String host,)
 
     private void close() {
         workGroup.shutdownGracefully();
         logger.info("NettyClient close over");
-    }
-
-    public Channel channel() {
-        return this.channel;
     }
 
     @Override

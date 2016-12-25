@@ -2,10 +2,6 @@ package org.bochenlong.mybatis.config;
 
 import com.github.pagehelper.PageHelper;
 import org.apache.ibatis.mapping.Environment;
-import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.mapping.SqlSource;
-import org.apache.ibatis.reflection.MetaObject;
-import org.apache.ibatis.reflection.SystemMetaObject;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -13,7 +9,7 @@ import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.bochenlong.commonmapper.BaseMapper;
 import org.bochenlong.commonmapper.BaseMapperHelper;
-import org.bochenlong.datasource.DataConfig;
+import org.bochenlong.datasource.DataSourceManager;
 import org.bochenlong.mybatis.IMybatis;
 import tk.mybatis.mapper.code.Style;
 import tk.mybatis.mapper.common.Mapper;
@@ -35,7 +31,7 @@ public class MybatisConfig {
      */
     private static SqlSessionFactory init() {
         TransactionFactory transactionFactory = new JdbcTransactionFactory();
-        Environment environment = new Environment("development", transactionFactory, DataConfig.hikari);
+        Environment environment = new Environment("development", transactionFactory, DataSourceManager.hikari);
         Configuration configuration = new Configuration(environment);
 //        processConfiguration(configuration);
 //        processConfiguration1(configuration);

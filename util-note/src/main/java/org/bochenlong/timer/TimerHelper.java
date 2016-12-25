@@ -1,4 +1,4 @@
-package org.bochenlong;
+package org.bochenlong.timer;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -6,23 +6,23 @@ import java.util.stream.Collectors;
 /**
  * Created by bochenlong on 16-11-22.
  */
-public class TimerUtil {
+public class TimerHelper {
 
-    private static String DEFAULT_GROUP = "default";
+    public static String DEFAULT_GROUP = "default";
 
     private static class holder {
-        private static TimerUtil timerUtil = new TimerUtil();
+        private static TimerHelper timerHelper = new TimerHelper();
     }
 
-    private Vector<Task> timers;
+    private List<Task> timers;
 
 
-    public static TimerUtil getInstance() {
-        return holder.timerUtil;
+    public static TimerHelper instance() {
+        return holder.timerHelper;
     }
 
-    private TimerUtil() {
-        timers = new Vector<>();
+    private TimerHelper() {
+        timers = new ArrayList<>();
     }
 
     public synchronized void register(String key, TimerTask timerTask,
@@ -45,13 +45,13 @@ public class TimerUtil {
         }
     }
 
-    public synchronized void runNow(String key, TimerTask timerTask,
-                                    long delay, long period) {
-        runNow(DEFAULT_GROUP, key, timerTask, delay, period);
+    public synchronized void registerAndRun(String key, TimerTask timerTask,
+                                            long delay, long period) {
+        registerAndRun(DEFAULT_GROUP, key, timerTask, delay, period);
     }
 
-    public synchronized void runNow(String group, String key, TimerTask timerTask,
-                                    long delay, long period) {
+    public synchronized void registerAndRun(String group, String key, TimerTask timerTask,
+                                            long delay, long period) {
         Optional<Task> optional = findTask(group, key);
 
         if (optional.isPresent()) {
@@ -59,48 +59,58 @@ public class TimerUtil {
             if (!task.isRunning()) task.run();
         } else {
             Task task = new Task(group, key, timerTask, delay, period);
-            task.run();
             timers.add(task);
-        }
-    }
-
-    public synchronized void startTimer(String group, String key) {
-        Optional<Task> optional = findTask(group, key);
-        if (optional.isPresent()) {
-            Task task = optional.get();
             task.run();
         }
     }
 
-    public synchronized void startGroupTimer(String group) {
+    public void startTimer(String key) {
+        startTimer(DEFAULT_GROUP, key);
+    }
+
+    public void startTimer(String group, String key) {
+        findTask(group, key).ifPresent(Task::run);
+    }
+
+    public void startGroupTimer(String group) {
         findGroupTask(group).ifPresent(a -> a.stream().forEach(Task::run));
     }
 
-    public synchronized void startAllTimer() {
+    public void startAllTimer() {
         findAllTask().ifPresent(tasks -> tasks.stream().forEach(Task::run));
     }
 
-    public synchronized void stopTimer(String group, String key) {
-        Optional<Task> optional = findTask(group, key);
-        if (optional.isPresent()) {
-            Task task = optional.get();
-            task.stop();
-            timers.remove(task);
-        }
+    public void stopTimer(String key) {
+        stopTimer(DEFAULT_GROUP, key);
     }
 
-    public synchronized void stopGroupTimer(String group) {
+    public void stopTimer(String group, String key) {
+        findTask(group, key).ifPresent(a -> {
+            a.stop();
+            timers.remove(a);
+        });
+    }
+
+    public void stopGroupTimer(String group) {
         findGroupTask(group).ifPresent(tasks -> {
             tasks.stream().forEach(Task::stop);
             timers.removeAll(tasks);
         });
     }
 
-    public synchronized void stopAllTimer() {
+    public void stopAllTimer() {
         findAllTask().ifPresent(tasks -> {
             tasks.stream().forEach(Task::stop);
             timers.removeAll(tasks);
         });
+    }
+
+    private Optional<Task> findTask(String group, String key) {
+        Optional<Task> optional = timers.stream().
+                filter(a -> a.getGroup().equals(group)
+                        && a.getKey().equals(key))
+                .findFirst();
+        return optional;
     }
 
     private Optional<List<Task>> findGroupTask(String group) {
@@ -115,15 +125,6 @@ public class TimerUtil {
                 .collect(Collectors.toList());
         return Optional.of(tasks);
     }
-
-    private Optional<Task> findTask(String group, String key) {
-        Optional<Task> optional = timers.stream().
-                filter(a -> a.getGroup().equals(group)
-                        && a.getKey().equals(key))
-                .findFirst();
-        return optional;
-    }
-
 
     private static class Task {
         private String group;

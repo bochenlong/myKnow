@@ -23,4 +23,7 @@ public class EmptyJudgeUtil {
         return str != null && str.length() != 0;
     }
 
+    public static boolean isNotNullAndEmpty(byte[] bytes) {
+        return bytes != null && bytes.length !=0;
+    }
 }

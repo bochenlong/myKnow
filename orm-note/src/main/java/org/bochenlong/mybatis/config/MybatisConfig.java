@@ -31,7 +31,7 @@ public class MybatisConfig {
      */
     private static SqlSessionFactory init() {
         TransactionFactory transactionFactory = new JdbcTransactionFactory();
-        Environment environment = new Environment("development", transactionFactory, DataSourceManager.hikari);
+        Environment environment = new Environment("development", transactionFactory, DataSourceManager.instance());
         Configuration configuration = new Configuration(environment);
 //        processConfiguration(configuration);
 //        processConfiguration1(configuration);

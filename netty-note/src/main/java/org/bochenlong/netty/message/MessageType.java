@@ -4,17 +4,21 @@ package org.bochenlong.netty.message;
  * Created by bochenlong on 16-12-22.
  */
 public enum MessageType {
-    BUSINESS((byte) 1),
-    HEART((byte) 2),
-    AUTH((byte) 3);
+    HEART((short) 0),
+    AUTH((short) 1),
+    BUSINESS((short) 100);
     
-    private byte type;
+    private short type;
     
-    MessageType(byte type) {
+    MessageType(short type) {
         this.type = type;
     }
     
-    public byte getType() {
+    public short getType() {
         return type;
+    }
+    
+    public static boolean isSystemType(MessageType type) {
+        return type.getType() >= 0 && type.getType() < 100;
     }
 }

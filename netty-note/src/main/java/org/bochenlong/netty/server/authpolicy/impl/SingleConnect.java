@@ -1,4 +1,4 @@
-package org.bochenlong.netty.server.auth.impl;
+package org.bochenlong.netty.server.authpolicy.impl;
 
 import io.netty.channel.ChannelHandlerContext;
 import org.bochenlong.netty.NettyHelper;
@@ -12,12 +12,12 @@ import java.util.function.Predicate;
 /**
  * Created by bochenlong on 16-12-22.
  */
-public class SingleConAuth {
+public class SingleConnect {
     private static class Holder {
-        private static SingleConAuth auth = new SingleConAuth();
+        private static SingleConnect auth = new SingleConnect();
     }
     
-    public static SingleConAuth me() {
+    public static SingleConnect me() {
         return Holder.auth;
     }
     

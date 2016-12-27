@@ -1,4 +1,4 @@
-package org.bochenlong.netty.server.auth.impl;
+package org.bochenlong.netty.server.authpolicy.impl;
 
 import io.netty.channel.ChannelHandlerContext;
 
@@ -8,12 +8,12 @@ import java.util.function.Predicate;
 /**
  * Created by bochenlong on 16-12-22.
  */
-public class UserDefineAuth {
+public class UserDefine {
     private static class Holder {
-        private static UserDefineAuth auth = new UserDefineAuth();
+        private static UserDefine auth = new UserDefine();
     }
     
-    public static UserDefineAuth me() {
+    public static UserDefine me() {
         return Holder.auth;
     }
     

@@ -2,7 +2,7 @@ package org.bochenlong.netty.codec;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import org.bochenlong.netty.message.NettyMessage;
+import org.bochenlong.netty.message.bean.NettyMessage;
 
 /**
  * Created by bochenlong on 16-11-4.

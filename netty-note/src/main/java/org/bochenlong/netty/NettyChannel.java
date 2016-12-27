@@ -1,7 +1,7 @@
 package org.bochenlong.netty;
 
 import io.netty.channel.Channel;
-import org.bochenlong.netty.message.NettyMessage;
+import org.bochenlong.netty.message.bean.NettyMessage;
 import org.bochenlong.netty.resp.NettyFuture;
 
 import java.util.concurrent.ConcurrentHashMap;

@@ -6,8 +6,8 @@ import io.netty.util.ReferenceCountUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bochenlong.netty.message.MessageType;
-import org.bochenlong.netty.message.NettyMessage;
-import org.bochenlong.netty.server.auth.AuthHelper;
+import org.bochenlong.netty.message.bean.NettyMessage;
+import org.bochenlong.netty.server.authpolicy.AuthHelper;
 
 /**
  * Created by bochenlong on 16-11-4.

@@ -1,4 +1,4 @@
-package org.bochenlong.netty.message;
+package org.bochenlong.netty.message.bean;
 
 /**
  * Created by bochenlong on 16-11-4.

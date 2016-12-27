@@ -3,7 +3,7 @@ package org.bochenlong.netty.codec;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
-import org.bochenlong.netty.message.NettyMessage;
+import org.bochenlong.netty.message.bean.NettyMessage;
 
 import java.util.List;
 

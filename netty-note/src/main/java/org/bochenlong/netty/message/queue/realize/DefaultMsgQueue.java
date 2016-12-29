@@ -1,7 +1,6 @@
-package org.bochenlong.netty.message.queue.impl;
+package org.bochenlong.netty.message.queue.realize;
 
 import org.bochenlong.netty.message.bean.NettyMsg;
-import org.bochenlong.netty.message.queue.MsgQueue;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -9,7 +8,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * Created by bochenlong on 16-12-27.
  */
-public class LinkedBlockingMsgQueue implements MsgQueue<Short, NettyMsg> {
+public class DefaultMsgQueue implements MsgQueue<Short, NettyMsg> {
     private ConcurrentHashMap<Short, LinkedBlockingQueue<NettyMsg>> queueMap =
             new ConcurrentHashMap<>();
     

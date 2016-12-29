@@ -107,7 +107,7 @@ public class NettyHelper {
         /*消息队列*/
         MsgManager.setDefault();
         /*消息类型*/
-        MsgHelper.addMessageTypes(Arrays.asList(BizMsgType.values()).stream().map(BizMsgType::getType).collect(Collectors.toSet()));
+        MsgHelper.addMsgTypes(Arrays.asList(BizMsgType.values()).stream().map(BizMsgType::getType).collect(Collectors.toSet()));
         new NettyServer().start();
     }
 }

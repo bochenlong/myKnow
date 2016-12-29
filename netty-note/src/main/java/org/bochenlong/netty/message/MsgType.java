@@ -1,4 +1,4 @@
-package org.bochenlong.netty.message.type;
+package org.bochenlong.netty.message;
 
 /**
  * Created by bochenlong on 16-12-22.

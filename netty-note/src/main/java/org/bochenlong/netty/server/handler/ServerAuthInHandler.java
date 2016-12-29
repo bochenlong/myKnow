@@ -5,7 +5,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bochenlong.netty.message.type.MsgType;
+import org.bochenlong.netty.message.MsgType;
 import org.bochenlong.netty.message.bean.NettyMsg;
 import org.bochenlong.netty.server.authpolicy.AuthHelper;
 

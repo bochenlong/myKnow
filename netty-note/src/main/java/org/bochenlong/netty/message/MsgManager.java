@@ -1,7 +1,7 @@
 package org.bochenlong.netty.message;
 
 import org.bochenlong.netty.message.bean.NettyMsg;
-import org.bochenlong.netty.message.queue.MsgQueue;
+import org.bochenlong.netty.message.queue.realize.MsgQueue;
 import org.bochenlong.netty.message.queue.UserDefineOption;
 
 /**

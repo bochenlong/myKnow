@@ -1,4 +1,4 @@
-package org.bochenlong.netty.message.queue;
+package org.bochenlong.netty.message.queue.realize;
 
 /**
  * Created by bochenlong on 16-12-28.

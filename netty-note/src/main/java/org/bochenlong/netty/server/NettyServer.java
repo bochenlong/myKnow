@@ -11,9 +11,9 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bochenlong.netty.codec.MessageDecoder;
-import org.bochenlong.netty.codec.MessageEncoder;
-import org.bochenlong.netty.manager.NettyManager;
+import org.bochenlong.netty.codec.MsgDecoder;
+import org.bochenlong.netty.codec.MsgEncoder;
+import org.bochenlong.netty.NettyManager;
 import org.bochenlong.netty.server.handler.ServerAuthInHandler;
 import org.bochenlong.netty.server.handler.ServerP2pInHandler;
 
@@ -42,11 +42,11 @@ public class NettyServer {
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline().addLast(
-                                    new MessageDecoder(
+                                    new MsgDecoder(
                                             NettyManager.MSG_MAX_LEN,
                                             NettyManager.MSG_LEN_OFFSET,
                                             NettyManager.MSG_LEN_FIELD));
-                            ch.pipeline().addLast(new MessageEncoder());
+                            ch.pipeline().addLast(new MsgEncoder());
                             ch.pipeline().addLast(new ServerAuthInHandler());
                             ch.pipeline().addLast(new ServerP2pInHandler());
                         }

@@ -5,8 +5,8 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bochenlong.netty.message.MessageType;
-import org.bochenlong.netty.message.bean.NettyMessage;
+import org.bochenlong.netty.message.type.MsgType;
+import org.bochenlong.netty.message.bean.NettyMsg;
 import org.bochenlong.netty.server.authpolicy.AuthHelper;
 
 /**
@@ -18,8 +18,8 @@ public class ServerAuthInHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         logger.debug("read {}", ctx);
-        NettyMessage message = (NettyMessage) msg;
-        if (message.getHeader().getType() == MessageType.AUTH.getType()) {
+        NettyMsg message = (NettyMsg) msg;
+        if (message.getHeader().getType() == MsgType.AUTH.getType()) {
             if (AuthHelper.auth(ctx)) {
                 logger.info("Server auth success {}", ctx);
             } else {

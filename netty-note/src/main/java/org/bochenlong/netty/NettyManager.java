@@ -1,11 +1,9 @@
-package org.bochenlong.netty.manager;
-
-import org.bochenlong.netty.NettyHelper;
+package org.bochenlong.netty;
 
 /**
  * Created by bochenlong on 16-10-24.
  */
-public class NettyManager {
+public class  NettyManager {
     public static String DEFAULT_HOST = NettyHelper.getLocalIP();
     public static int DEFAULT_PORT = 8989;
     

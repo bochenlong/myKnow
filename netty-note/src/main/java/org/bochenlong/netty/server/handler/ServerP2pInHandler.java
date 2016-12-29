@@ -5,7 +5,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bochenlong.netty.message.bean.NettyMessage;
+import org.bochenlong.netty.message.bean.NettyMsg;
 
 public class ServerP2pInHandler extends ChannelInboundHandlerAdapter {
     private static Logger logger = LogManager.getLogger(ServerP2pInHandler.class);
@@ -13,7 +13,7 @@ public class ServerP2pInHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         logger.info("read {}", ctx);
-        NettyMessage message = (NettyMessage) msg;
+        NettyMsg message = (NettyMsg) msg;
 
 
         // 释放

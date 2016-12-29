@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by bochenlong on 16-11-3.
  */
-public class MessageCodec {
+public class MsgCodec {
     private static ConcurrentHashMap<Class<?>, Schema<?>> cschema
             = new ConcurrentHashMap();
 

@@ -3,7 +3,7 @@ package org.bochenlong.netty.message.bean;
 /**
  * Created by bochenlong on 16-11-4.
  */
-public class NettyMessage {
+public class NettyMsg {
     private Header header;
     private Object body;
 

@@ -1,7 +1,6 @@
 package org.bochenlong.netty.server.authpolicy;
 
 import io.netty.channel.ChannelHandlerContext;
-import org.bochenlong.netty.manager.AuthManager;
 import org.bochenlong.netty.server.authpolicy.impl.SingleConnect;
 import org.bochenlong.netty.server.authpolicy.impl.UserDefine;
 import org.bochenlong.netty.server.authpolicy.impl.WhiteList;
@@ -16,13 +15,9 @@ public class AuthHelper {
     public static boolean auth(ChannelHandlerContext ctx) {
         if (AuthManager.getAuthType() == AuthManager.AuthType.WHITE_LIST) {
             return auth(ctx, WhiteList.me().getPredicate());
-        }
-        
-        if (AuthManager.getAuthType() == AuthManager.AuthType.SINGLE_CONNECT) {
+        } else if (AuthManager.getAuthType() == AuthManager.AuthType.SINGLE_CONNECT) {
             return auth(ctx, SingleConnect.me().getPredicate());
-        }
-        
-        if (AuthManager.getAuthType() == AuthManager.AuthType.USER_DEFINE) {
+        } else if (AuthManager.getAuthType() == AuthManager.AuthType.USER_DEFINE) {
             return auth(ctx, UserDefine.me().getPredicate());
         }
         return false;
@@ -31,13 +26,9 @@ public class AuthHelper {
     public static void removeAuth(ChannelHandlerContext ctx) {
         if (AuthManager.getAuthType() == AuthManager.AuthType.WHITE_LIST) {
             removeAuth(ctx, WhiteList.me().getConsumer());
-        }
-        
-        if (AuthManager.getAuthType() == AuthManager.AuthType.SINGLE_CONNECT) {
+        } else if (AuthManager.getAuthType() == AuthManager.AuthType.SINGLE_CONNECT) {
             removeAuth(ctx, SingleConnect.me().getConsumer());
-        }
-        
-        if (AuthManager.getAuthType() == AuthManager.AuthType.USER_DEFINE) {
+        } else if (AuthManager.getAuthType() == AuthManager.AuthType.USER_DEFINE) {
             removeAuth(ctx, UserDefine.me().getConsumer());
         }
     }

@@ -1,4 +1,4 @@
-package org.bochenlong.netty.manager;
+package org.bochenlong.netty.server.authpolicy;
 
 import org.bochenlong.netty.server.authpolicy.impl.UserDefine;
 import org.bochenlong.netty.server.authpolicy.impl.WhiteList;

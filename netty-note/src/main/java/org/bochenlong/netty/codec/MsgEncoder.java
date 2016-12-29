@@ -3,21 +3,21 @@ package org.bochenlong.netty.codec;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
-import org.bochenlong.netty.message.bean.NettyMessage;
+import org.bochenlong.netty.message.bean.NettyMsg;
 
 import java.util.List;
 
 /**
  * Created by bochenlong on 16-11-4.
  */
-public class MessageEncoder extends MessageToMessageEncoder<NettyMessage> {
+public class MsgEncoder extends MessageToMessageEncoder<NettyMsg> {
     @Override
-    protected void encode(ChannelHandlerContext channelHandlerContext, NettyMessage message, List<Object> list) throws Exception {
+    protected void encode(ChannelHandlerContext channelHandlerContext, NettyMsg message, List<Object> list) throws Exception {
         if (message == null || message.getHeader() == null) {
             throw new Exception("The encode message is null");
         }
 
-        ByteBuf byteBuf = MessageEncoderUtil.encode(message);
+        ByteBuf byteBuf = MsgEncoderUtil.encode(message);
 
         list.add(byteBuf);
     }

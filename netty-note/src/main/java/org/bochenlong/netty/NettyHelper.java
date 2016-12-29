@@ -2,13 +2,18 @@ package org.bochenlong.netty;
 
 import io.netty.channel.Channel;
 import org.bochenlong.netty.client.NettyClient;
+import org.bochenlong.netty.message.MsgHelper;
+import org.bochenlong.netty.message.MsgManager;
 import org.bochenlong.netty.server.NettyServer;
+import org.bochenlong.netty.server.authpolicy.AuthManager;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketAddress;
 import java.net.SocketException;
+import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.stream.Collectors;
 
 /**
  * Created by bochenlong on 16-11-4.
@@ -49,11 +54,11 @@ public class NettyHelper {
         return localIP;
     }
     
-    //    public static void write(String host, NettyMessage message) {
+    //    public static void write(String host, NettyMsg message) {
 //        connect(host).writeAndFlush(message);
 //    }
 //
-//    public static Future<NettyMessage> sendAndAccept(String host, NettyMessage message) throws RemoteException {
+//    public static Future<NettyMsg> sendAndAccept(String host, NettyMsg message) throws RemoteException {
 //        Channel channel = connect(host);
 //        try {
 //            ChannelFuture future = channel.writeAndFlush(message);
@@ -72,8 +77,8 @@ public class NettyHelper {
 //        return futureMap.computeIfAbsent(message.getId(), a -> new NettyFuture<>());
 //    }
 //
-//    public static void setFutureResult(NettyMessage message) throws ExecutionException, InterruptedException {
-//        NettyFuture<NettyMessage> f = futureMap.get(message.getId());
+//    public static void setFutureResult(NettyMsg message) throws ExecutionException, InterruptedException {
+//        NettyFuture<NettyMsg> f = futureMap.get(message.getId());
 //        if (f == null) return;
 //        f.set(message);
 //        futureMap.remove(message.getId());
@@ -97,6 +102,12 @@ public class NettyHelper {
     }
     
     public static void startServer() {
+        /*授权方式*/
+        AuthManager.setSINGLE_CON();
+        /*消息队列*/
+        MsgManager.setDefault();
+        /*消息类型*/
+        MsgHelper.addMessageTypes(Arrays.asList(BizMsgType.values()).stream().map(BizMsgType::getType).collect(Collectors.toSet()));
         new NettyServer().start();
     }
 }

@@ -9,9 +9,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bochenlong.netty.NettyChannel;
 import org.bochenlong.netty.client.handlers.ClientInHandler;
-import org.bochenlong.netty.codec.MessageDecoder;
-import org.bochenlong.netty.codec.MessageEncoder;
-import org.bochenlong.netty.manager.NettyManager;
+import org.bochenlong.netty.codec.MsgDecoder;
+import org.bochenlong.netty.codec.MsgEncoder;
+import org.bochenlong.netty.NettyManager;
 
 /**
  * Created by bochenlong on 16-11-3.
@@ -44,9 +44,9 @@ public class NettyClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new MessageDecoder(NettyManager.MSG_MAX_LEN
+                            ch.pipeline().addLast(new MsgDecoder(NettyManager.MSG_MAX_LEN
                                     , NettyManager.MSG_LEN_OFFSET, NettyManager.MSG_LEN_FIELD));
-                            ch.pipeline().addLast(new MessageEncoder());
+                            ch.pipeline().addLast(new MsgEncoder());
                             ch.pipeline().addLast(new ClientInHandler());
                         }
                     });

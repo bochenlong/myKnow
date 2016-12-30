@@ -8,7 +8,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bochenlong.netty.NettyChannel;
-import org.bochenlong.netty.client.handlers.ClientInHandler;
+import org.bochenlong.netty.client.handler.ClientInHandler;
 import org.bochenlong.netty.codec.MsgDecoder;
 import org.bochenlong.netty.codec.MsgEncoder;
 import org.bochenlong.netty.NettyManager;

@@ -7,18 +7,18 @@ import java.util.Map;
  * Created by bochenlong on 16-11-4.
  */
 public class Header {
-    private int crcCode = 0xabef0101;
+    private byte crcCode = 0x01;
     private int length;
     private long sessionId;
-    private short type; /** see {@link org.bochenlong.netty.message.type}*/
+    private short type; /** see {@link org.bochenlong.netty.message.MsgType}*/
     private byte priority;
     private Map<String, Object> attachment = new HashMap<>();
     
-    public int getCrcCode() {
+    public byte getCrcCode() {
         return crcCode;
     }
     
-    public void setCrcCode(int crcCode) {
+    public void setCrcCode(byte crcCode) {
         this.crcCode = crcCode;
     }
     

@@ -1,9 +1,14 @@
 package org.bochenlong.netty;
 
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
 import org.bochenlong.netty.client.NettyClient;
+import org.bochenlong.netty.common.Constant;
+import org.bochenlong.netty.common.exception.RemoteException;
 import org.bochenlong.netty.message.MsgHelper;
 import org.bochenlong.netty.message.MsgManager;
+import org.bochenlong.netty.message.bean.NettyMsg;
+import org.bochenlong.netty.resp.NettyFuture;
 import org.bochenlong.netty.server.NettyServer;
 import org.bochenlong.netty.server.authpolicy.AuthManager;
 
@@ -13,6 +18,8 @@ import java.net.SocketAddress;
 import java.net.SocketException;
 import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 /**
@@ -54,40 +61,44 @@ public class NettyHelper {
         return localIP;
     }
     
-    //    public static void write(String host, NettyMsg message) {
-//        connect(host).writeAndFlush(message);
-//    }
-//
-//    public static Future<NettyMsg> sendAndAccept(String host, NettyMsg message) throws RemoteException {
-//        Channel channel = connect(host);
-//        try {
-//            ChannelFuture future = channel.writeAndFlush(message);
-//            // 等待发送成功
-//            if (message.getHeader().getBack() == BackType.BACK.getType()) {
-//                future.await(NettyManager.SEND_TIME_OUT);
-//            }
-//            Throwable cause = future.cause();
-//            if (cause != null) {
-//                throw cause;
-//            }
-//        } catch (Throwable throwable) {
-//            throw new RemoteException("fail send message to " + getIp(channel.remoteAddress()) + " , casuse " + throwable.getMessage());
-//        }
-//        // 封装等待Future
-//        return futureMap.computeIfAbsent(message.getId(), a -> new NettyFuture<>());
-//    }
-//
-//    public static void setFutureResult(NettyMsg message) throws ExecutionException, InterruptedException {
-//        NettyFuture<NettyMsg> f = futureMap.get(message.getId());
-//        if (f == null) return;
-//        f.set(message);
-//        futureMap.remove(message.getId());
-//    }
-//
-//    public static void remove(String host, Channel channel) {
-//        channelMap.remove(host, channel);
-//    }
-//
+    public static void send(String host, NettyMsg msg) {
+        connect(host).writeAndFlush(msg);
+    }
+    
+    public static Future<NettyMsg> sendAndAccept(String host, NettyMsg msg) throws RemoteException {
+        Channel channel = connect(host);
+        try {
+            ChannelFuture future = channel.writeAndFlush(msg);
+            // 等待发送成功
+            if (msg.getHeader().getBack() == Constant.YES) {
+                future.await(NettyManager.SEND_TIME_OUT);
+            }
+            Throwable cause = future.cause();
+            if (cause != null) {
+                throw cause;
+            }
+        } catch (Throwable throwable) {
+            throw new RemoteException("fail send message to " + getIp(channel.remoteAddress()) + " , cause " + throwable.getMessage());
+        }
+        // 封装等待Future
+        return NettyChannel.futures.computeIfAbsent(msg.getHeader().getSessionId(), a -> new NettyFuture<>());
+    }
+    
+    
+    public static void setFutureResult(NettyMsg msg) throws ExecutionException, InterruptedException {
+        NettyFuture<NettyMsg> f = NettyChannel.futures.get(msg.getHeader().getSessionId());
+        if (f == null) return;
+        f.set(msg);
+        NettyChannel.futures.remove(msg.getHeader().getSessionId());
+    }
+    
+    
+    public static void remove(String host, Channel channel) {
+        channel.close();
+        NettyChannel.channels.remove(host, channel);
+    }
+    
+    //
     public static Channel connect(String host) {
         Channel channel = new NettyClient(host).channel();
         /*P2pClient的new过程可能会非常长，如果put的时候，已经有连接，那么断开此连接，使用已有的通道*/

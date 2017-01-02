@@ -3,17 +3,17 @@ package org.bochenlong.netty.codec;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
-import org.bochenlong.netty.message.NettyMessage;
+import org.bochenlong.netty.message.bean.NettyMsg;
 
 /**
  * Created by bochenlong on 16-11-4.
  */
-public class MessageDecoder extends LengthFieldBasedFrameDecoder {
+public class MsgDecoder extends LengthFieldBasedFrameDecoder {
     
     // maxFrameLength 最大长度
     // lengthFieldOffset 偏移量
     // lengthFieldLength 表示长度的位置
-    public MessageDecoder(int maxFrameLength, int lengthFieldOffset, int lengthFieldLength) {
+    public MsgDecoder(int maxFrameLength, int lengthFieldOffset, int lengthFieldLength) {
         super(maxFrameLength, lengthFieldOffset, lengthFieldLength);
     }
     
@@ -31,7 +31,7 @@ public class MessageDecoder extends LengthFieldBasedFrameDecoder {
         frame.readBytes(bytes);
         
         
-        NettyMessage message = MessageCodec.toObject(bytes, NettyMessage.class);
+        NettyMsg message = MsgCodec.toObject(bytes, NettyMsg.class);
         message.getHeader().setLength(length);
         
         return message;

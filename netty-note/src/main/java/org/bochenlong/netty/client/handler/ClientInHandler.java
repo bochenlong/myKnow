@@ -1,4 +1,4 @@
-package org.bochenlong.netty.client.handlers;
+package org.bochenlong.netty.client.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -57,7 +57,7 @@ public class ClientInHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelWritabilityChanged(ChannelHandlerContext ctx) throws Exception {
-        logger.debug("channel writablity changed {}", ctx);
+        logger.debug("channel writability changed {}", ctx);
     }
 
 }

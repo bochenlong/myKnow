@@ -14,7 +14,7 @@ public class DataSourceManager {
         private static DataSource dataSource = init();
     }
 
-    private static DataSource instance() {
+    public static DataSource instance() {
         return Holder.dataSource;
     }
 

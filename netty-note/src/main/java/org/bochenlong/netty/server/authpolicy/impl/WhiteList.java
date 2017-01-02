@@ -1,4 +1,4 @@
-package org.bochenlong.netty.server.auth;
+package org.bochenlong.netty.server.authpolicy.impl;
 
 import io.netty.channel.ChannelHandlerContext;
 import org.bochenlong.EmptyJudgeUtil;
@@ -13,12 +13,12 @@ import java.util.function.Predicate;
 /**
  * Created by bochenlong on 16-12-22.
  */
-public class WhiteListAuth {
+public class WhiteList {
     private static class Holder {
-        private static WhiteListAuth auth = new WhiteListAuth();
+        private static WhiteList auth = new WhiteList();
     }
     
-    public static WhiteListAuth me() {
+    public static WhiteList me() {
         return Holder.auth;
     }
     

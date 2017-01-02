@@ -11,12 +11,11 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bochenlong.netty.codec.MessageDecoder;
-import org.bochenlong.netty.codec.MessageEncoder;
-import org.bochenlong.netty.config.NettyConfig;
-import org.bochenlong.netty.server.handlers.ServerAuthInHandler;
-import org.bochenlong.netty.server.handlers.ServerConnectInHandler;
-import org.bochenlong.netty.server.handlers.ServerP2pInHandler;
+import org.bochenlong.netty.codec.MsgDecoder;
+import org.bochenlong.netty.codec.MsgEncoder;
+import org.bochenlong.netty.NettyManager;
+import org.bochenlong.netty.server.handler.ServerAuthInHandler;
+import org.bochenlong.netty.server.handler.ServerP2pInHandler;
 
 /**
  * Created by bochenlong on 16-11-3.
@@ -35,7 +34,7 @@ public class NettyServer {
             bootstrap.group(bossGroup, workGroup)
                     .channel(NioServerSocketChannel.class)
                     // for bossGroup
-                    .option(ChannelOption.SO_BACKLOG, NettyConfig.BACKLOG_SIZE)
+                    .option(ChannelOption.SO_BACKLOG, NettyManager.BACKLOG_SIZE)
                     .option(ChannelOption.SO_KEEPALIVE, true)// 保活
                     // for workGroup
                     .childOption(ChannelOption.TCP_NODELAY, false)// 有数据就发，默认false
@@ -43,24 +42,23 @@ public class NettyServer {
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline().addLast(
-                                    new MessageDecoder(
-                                            NettyConfig.MSG_MAX_LEN,
-                                            NettyConfig.MSG_LEN_OFFSET,
-                                            NettyConfig.MSG_LEN_FIELD));
-                            ch.pipeline().addLast(new MessageEncoder());
-                            ch.pipeline().addLast(new ServerConnectInHandler());
+                                    new MsgDecoder(
+                                            NettyManager.MSG_MAX_LEN,
+                                            NettyManager.MSG_LEN_OFFSET,
+                                            NettyManager.MSG_LEN_FIELD));
+                            ch.pipeline().addLast(new MsgEncoder());
                             ch.pipeline().addLast(new ServerAuthInHandler());
                             ch.pipeline().addLast(new ServerP2pInHandler());
                         }
                     });
 
             // 绑定端口，等待启动成功
-            ChannelFuture future = bootstrap.bind(NettyConfig.DEFAULT_HOST, port).sync();
-            logger.info("P2pServer start ok : {} - {}", NettyConfig.DEFAULT_HOST, port);
+            ChannelFuture future = bootstrap.bind(NettyManager.DEFAULT_HOST, port).sync();
+            logger.info("P2pServer start ok : {} - {}", NettyManager.DEFAULT_HOST, port);
             // 监听关闭事件
             future.channel().closeFuture().addListener(a -> {
                 if (a.isDone()) {
-                    logger.info("P2pServer stop : {} - {}", NettyConfig.DEFAULT_HOST, port);
+                    logger.info("P2pServer stop : {} - {}", NettyManager.DEFAULT_HOST, port);
                     // 关闭资源
                     this.stop();
                 }
@@ -78,7 +76,7 @@ public class NettyServer {
     }
 
     public void start() {
-        start(NettyConfig.DEFAULT_PORT);
+        start(NettyManager.DEFAULT_PORT);
     }
 
     protected void stop() {

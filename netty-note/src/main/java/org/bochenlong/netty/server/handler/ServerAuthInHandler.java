@@ -1,13 +1,13 @@
-package org.bochenlong.netty.server.handlers;
+package org.bochenlong.netty.server.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bochenlong.netty.message.MessageType;
-import org.bochenlong.netty.message.NettyMessage;
-import org.bochenlong.netty.server.auth.AuthHelper;
+import org.bochenlong.netty.message.MsgType;
+import org.bochenlong.netty.message.bean.NettyMsg;
+import org.bochenlong.netty.server.authpolicy.AuthHelper;
 
 /**
  * Created by bochenlong on 16-11-4.
@@ -18,8 +18,8 @@ public class ServerAuthInHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         logger.debug("read {}", ctx);
-        NettyMessage message = (NettyMessage) msg;
-        if (message.getHeader().getType() == MessageType.AUTH.getType()) {
+        NettyMsg message = (NettyMsg) msg;
+        if (message.getHeader().getType() == MsgType.AUTH.getType()) {
             if (AuthHelper.auth(ctx)) {
                 logger.info("Server auth success {}", ctx);
             } else {

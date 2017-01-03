@@ -15,7 +15,7 @@ import org.bochenlong.netty.codec.MsgDecoder;
 import org.bochenlong.netty.codec.MsgEncoder;
 import org.bochenlong.netty.NettyManager;
 import org.bochenlong.netty.server.handler.ServerAuthInHandler;
-import org.bochenlong.netty.server.handler.ServerP2pInHandler;
+import org.bochenlong.netty.server.handler.ServerBizHandler;
 
 /**
  * Created by bochenlong on 16-11-3.
@@ -48,7 +48,7 @@ public class NettyServer {
                                             NettyManager.MSG_LEN_FIELD));
                             ch.pipeline().addLast(new MsgEncoder());
                             ch.pipeline().addLast(new ServerAuthInHandler());
-                            ch.pipeline().addLast(new ServerP2pInHandler());
+                            ch.pipeline().addLast(new ServerBizHandler());
                         }
                     });
 

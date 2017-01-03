@@ -6,8 +6,8 @@ import java.util.function.LongUnaryOperator;
 /**
  * Created by bochenlong on 17-1-3.
  */
-public class IdWork {
-    public IdWork(long dataCenterId, long workerId) {
+public class IdWorker {
+    public IdWorker(long dataCenterId, long workerId) {
         if (workerId > maxWorkerId || workerId < 0) {
             throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", workerId));
         }

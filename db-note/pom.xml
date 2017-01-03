@@ -14,44 +14,9 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <c3p0.version>0.9.5.2</c3p0.version>
-        <druid.version>1.0.26</druid.version>
-        <hikaricp.version>2.5.1</hikaricp.version>
-        <derby.version>10.9.1.0</derby.version>
-        <mysqljdbc.version>6.0.4</mysqljdbc.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>${c3p0.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.0.26</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>${hikaricp.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>${derby.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
-            <version>${derby.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysqljdbc.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.bochenlong</groupId>
             <artifactId>test</artifactId>

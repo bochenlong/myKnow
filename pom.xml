@@ -19,7 +19,6 @@
         <!-- db connect -->
         <hikaricp.version>2.5.1</hikaricp.version>
         <mysql-connector.version>6.0.5</mysql-connector.version>
-        <jedis.version>2.9.0</jedis.version>
         <!-- web mvc -->
         <vertx.version>3.3.3</vertx.version>
         <jersey.version>2.23.2</jersey.version>

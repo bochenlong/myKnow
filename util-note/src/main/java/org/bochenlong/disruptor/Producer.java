@@ -1,4 +1,4 @@
-package org.bochenlong.disruptor.base;
+package org.bochenlong.disruptor;
 
 import com.lmax.disruptor.RingBuffer;
 

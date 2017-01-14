@@ -1,14 +1,10 @@
 package org.bochenlong.disruptor;
 
-import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.TimeoutException;
 import com.lmax.disruptor.WaitStrategy;
-import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
-import org.bochenlong.disruptor.base.*;
 
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
@@ -55,51 +51,6 @@ public class DisruptorHelper {
 
     public static void shutDownQueue(String key, long t, TimeUnit unit) throws TimeoutException {
         queues.get(key).disruptor.shutdown(t, unit);
-    }
-
-    private static class DisruptorQueue {
-        private Disruptor<QueueData> disruptor;
-        private Producer producer;
-
-        public DisruptorQueue(int bufferSize, EventConsumer... consumers) {
-            QueueDataFactory factory = new QueueDataFactory();
-            this.disruptor = new Disruptor<>(
-                    factory, bufferSize, Executors.defaultThreadFactory(), ProducerType.MULTI, new BlockingWaitStrategy()
-            );
-            this.disruptor.handleEventsWith(consumers);
-            this.disruptor.start();
-            this.producer = new Producer(disruptor.getRingBuffer());
-        }
-
-        public DisruptorQueue(int bufferSize, WorkConsumer... consumers) {
-            QueueDataFactory factory = new QueueDataFactory();
-            this.disruptor = new Disruptor<>(
-                    factory, bufferSize, Executors.defaultThreadFactory(), ProducerType.MULTI, new BlockingWaitStrategy()
-            );
-            this.disruptor.handleEventsWithWorkerPool(consumers);
-            this.disruptor.start();
-            this.producer = new Producer(disruptor.getRingBuffer());
-        }
-
-        public DisruptorQueue(int bufferSize, ThreadFactory threadFactory, ProducerType producerType, WaitStrategy waitStrategy, EventConsumer... consumers) {
-            QueueDataFactory factory = new QueueDataFactory();
-            this.disruptor = new Disruptor<>(
-                    factory, bufferSize, threadFactory, producerType, waitStrategy
-            );
-            this.disruptor.handleEventsWith(consumers);
-            this.disruptor.start();
-            this.producer = new Producer(disruptor.getRingBuffer());
-        }
-
-        public DisruptorQueue(int bufferSize, ThreadFactory threadFactory, ProducerType producerType, WaitStrategy waitStrategy, WorkConsumer... consumers) {
-            QueueDataFactory factory = new QueueDataFactory();
-            this.disruptor = new Disruptor<>(
-                    factory, bufferSize, threadFactory, producerType, waitStrategy
-            );
-            this.disruptor.handleEventsWithWorkerPool(consumers);
-            this.disruptor.start();
-            this.producer = new Producer(disruptor.getRingBuffer());
-        }
     }
 
 }

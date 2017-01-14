@@ -35,7 +35,6 @@
 
     <modules>
         <module>java-note</module>
-        <module>test</module>
         <module>test-note</module>
         <module>orm-note</module>
         <module>util-note</module>
@@ -98,12 +97,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-connector.version}</version>
         </dependency>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>${jedis.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-web</artifactId>

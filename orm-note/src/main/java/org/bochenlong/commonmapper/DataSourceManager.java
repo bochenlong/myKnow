@@ -1,4 +1,4 @@
-package org.bochenlong.datasource;
+package org.bochenlong.commonmapper;
 
 import com.zaxxer.hikari.HikariDataSource;
 

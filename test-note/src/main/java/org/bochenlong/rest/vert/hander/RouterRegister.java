@@ -1,4 +1,4 @@
-package org.bochenlong.vert.hander;
+package org.bochenlong.rest.vert.hander;
 
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
@@ -14,9 +14,5 @@ public class RouterRegister {
                 .produces("text/plain")
                 .handler(context -> context.response().end("hello world"));
 
-
-        router.post("/user")
-                .produces("text/plain")
-                .handler(new UserHandler());
     }
 }

@@ -5,11 +5,12 @@
         <jdk.version>1.8</jdk.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <!-- codec -->
-        <protostuff.version>1.5.2</protostuff.version>
         <!-- netty nio -->
         <netty.version>4.1.6.Final</netty.version>
+        <!-- codec -->
+        <protostuff.version>1.5.2</protostuff.version>
         <!-- logger -->
+        <slf4j-api.version>1.7.22</slf4j-api.version>
         <lo4g2.version>2.7</lo4g2.version>
         <!-- queue -->
         <disruptor.version>3.3.6</disruptor.version>
@@ -17,7 +18,7 @@
         <mybatis.version>3.4.1</mybatis.version>
         <!-- db connect -->
         <hikaricp.version>2.5.1</hikaricp.version>
-        <mysql-connector.version>6.0.4</mysql-connector.version>
+        <mysql-connector.version>6.0.5</mysql-connector.version>
         <jedis.version>2.9.0</jedis.version>
         <!-- web mvc -->
         <vertx.version>3.3.3</vertx.version>
@@ -36,12 +37,9 @@
     <modules>
         <module>java-note</module>
         <module>test</module>
-        <module>db-note</module>
         <module>test-note</module>
-        <module>rest-note</module>
         <module>orm-note</module>
         <module>util-note</module>
-        <module>netty-note</module>
     </modules>
 
     <dependencies>
@@ -59,6 +57,11 @@
             <groupId>io.protostuff</groupId>
             <artifactId>protostuff-runtime</artifactId>
             <version>${protostuff.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -94,7 +97,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>{mysql-connector.version}</version>
+            <version>${mysql-connector.version}</version>
         </dependency>
         <dependency>
             <groupId>redis.clients</groupId>

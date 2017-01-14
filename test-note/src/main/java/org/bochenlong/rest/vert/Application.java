@@ -1,4 +1,4 @@
-package org.bochenlong.vert;
+package org.bochenlong.rest.vert;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
@@ -7,15 +7,14 @@ import io.vertx.core.VertxOptions;
 import io.vertx.core.http.HttpServer;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.StaticHandler;
-import org.bochenlong.vert.hander.RouterRegister;
+import org.bochenlong.rest.RestConstant;
+import org.bochenlong.rest.vert.hander.RouterRegister;
 
 /**
  * Created by bochenlong on 16-9-21.
  */
 public class Application extends AbstractVerticle {
     private static int PROCESSOR_NUM = Runtime.getRuntime().availableProcessors();
-    private static String SERVER_HOST = "localhost";
-    private static int SERVER_PORT = 8888;
 
     @Override
     public void start() throws Exception {
@@ -35,7 +34,7 @@ public class Application extends AbstractVerticle {
         RouterRegister.register(router);
 
         // 开启服务器
-        server.requestHandler(router::accept).listen(SERVER_PORT, SERVER_HOST);
+        server.requestHandler(router::accept).listen(RestConstant.SERVER_PORT, RestConstant.SERVER_HOST);
 
         System.out.println(this.deploymentID() + " is deployed");
 

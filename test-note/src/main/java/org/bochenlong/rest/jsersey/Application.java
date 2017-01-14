@@ -1,4 +1,4 @@
-package org.bochenlong.jersey;
+package org.bochenlong.rest.jsersey;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
@@ -18,7 +18,7 @@ public class Application {
 
 
     public static HttpServer startServer(String host, int port) {
-        final ResourceConfig rc = new ResourceConfig().packages("org.bochenlong.jersey");
+        final ResourceConfig rc = new ResourceConfig().packages("org.bochenlong.rest.jersey");
         URI baseUri = UriBuilder.fromUri(BASE_URI).host(host).port(port).build();
         return GrizzlyHttpServerFactory.createHttpServer(baseUri, rc);
     }

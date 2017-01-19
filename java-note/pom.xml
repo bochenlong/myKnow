@@ -18,7 +18,7 @@
     <dependencies>
         <dependency>
             <groupId>org.bochenlong</groupId>
-            <artifactId>test</artifactId>
+            <artifactId>util-note</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

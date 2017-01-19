@@ -1,6 +1,7 @@
 package org.bochenlong.time8;
 
-import org.bochenlong.print.PrintUt;
+
+import org.bochenlong.PrintUt;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -21,10 +22,10 @@ public class Time8 {
         LocalDate date = LocalDate.now();
         date = LocalDate.parse("2015-04-01",DateTimeFormatter.ISO_LOCAL_DATE);
         date = LocalDate.parse("20150401",DateTimeFormatter.BASIC_ISO_DATE);
-        PrintUt.print("当前日期：", date);
+        //PrintUt.print("当前日期：", date);
         // 创建20160901日期 注意你创建9.31会报错
         date = LocalDate.of(2016, 9, 1);
-        PrintUt.print("创建日期：", date);
+        //PrintUt.print("创建日期：", date);
         // 获取日期的年、月、日
         int year = date.getYear();
         int month = date.getMonthValue();

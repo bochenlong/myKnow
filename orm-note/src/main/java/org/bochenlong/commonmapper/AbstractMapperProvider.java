@@ -2,7 +2,7 @@ package org.bochenlong.commonmapper;
 
 import org.apache.ibatis.mapping.MappedStatement;
 
-import javax.persistence.Transient;
+import java.beans.Transient;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.*;
